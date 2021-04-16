@@ -1,0 +1,532 @@
+$bgColor = #c0c0c0;
+$selectedBgColor = #000080;
+$selectedFgColor = #ffffff;
+$borderShade = #808080;
+
+QWidget
+{
+	background: $bgColor;
+}
+
+/* --------------------------------------------------------------------
+	Push button
+	-------------------------------------------------------------------- */
+	
+QPushButton
+{
+	border-width: 3px;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/box.png") 3 3 3 3;
+	color: #000000;
+	background-color: transparent;
+}
+
+QPushButton:disabled
+{
+	color: #606060;
+}
+
+QPushButton:pressed, QPushButton:checked
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/box-active.png") 3 3 3 3;
+}
+
+/* --------------------------------------------------------------------
+	Check box
+	-------------------------------------------------------------------- */
+QCheckBox, QGroupBox::indicator
+{
+	min-width: 16px;
+	min-height: 16px;
+}
+
+QCheckBox::indicator:unchecked, QGroupBox::indicator:unchecked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-unchecked.png");
+}
+
+QCheckBox::indicator:checked, QGroupBox::indicator:checked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-checked.png");
+}
+
+QCheckBox::indicator:indeterminate, QGroupBox::indicator:indeterminate
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-mixed.png");
+}
+
+QCheckBox::indicator:disabled:unchecked, QGroupBox::indicator:disabled:unchecked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-unchecked-insensitive.png");
+}
+
+QCheckBox::indicator:disabled:checked, QGroupBox::indicator:disabled:checked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-checked-insensitive.png");
+}
+
+QCheckBox::indicator:disabled:indeterminate, QGroupBox::indicator:disabled:indeterminate
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/checkbox-mixed-insensitive.png");
+}
+
+/* --------------------------------------------------------------------
+	Radio button
+	-------------------------------------------------------------------- */
+QRadioButton
+{
+	min-width: 16px;
+	min-height: 16px;
+}
+
+QRadioButton::indicator:checked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-selected.png");
+}
+
+QRadioButton::indicator:unchecked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-unselected.png");
+}
+
+QRadioButton::indicator:indeterminate
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-mixed.png");
+}
+
+QRadioButton::indicator:disabled:unchecked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-unselected-insensitive.png");
+}
+
+QRadioButton::indicator:disabled:checked
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-selected-insensitive.png");
+}
+
+QRadioButton::indicator:disabled:indeterminate
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/radio-mixed-insensitive.png");
+}
+
+/* --------------------------------------------------------------------
+	Slider
+	-------------------------------------------------------------------- */
+
+QSlider::groove:horizontal
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/handle-h.png");
+	background-repeat: repeat-x;
+	background-position: center center;
+}
+
+QSlider::groove:vertical
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/handle-v.png");
+	background-repeat: repeat-y;
+	background-position: center center;
+}
+
+QSlider::handle:horizontal
+{
+	border: 2px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/box.png") 2 2 2 2;
+	height: 24px;
+	width: 10px;
+}
+
+QSlider::handle:vertical
+{
+	border: 2px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/scrollbar_button.png") 2 2 2 2;
+	height: 10px;
+	width: 24px;
+}
+
+/* --------------------------------------------------------------------
+	Combo box
+	-------------------------------------------------------------------- */
+QComboBox
+{
+	background-color: $bgColor;
+}
+
+QComboBox::drop-down
+{
+	padding: 1px;
+	padding-left: 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	margin-right: 2px;
+	min-width: 16px;
+	min-height: 15px;
+}
+
+QComboBox::down-arrow
+{
+	margin-bottom: -1px;
+	min-width: 16px;
+	min-height: 16px;
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/vcl-combobox-arrow-down.png");
+}
+
+QComboBox::down-arrow:disabled
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/vcl-combobox-arrow-down-disabled.png");
+}
+
+/* --------------------------------------------------------------------
+	Spin box
+	-------------------------------------------------------------------- */
+	
+QSpinBox, QAbstractSpinBox
+{
+	border: 2px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/entry.png") 2 2 2 2;
+	border-radius: 0px;
+}
+
+QSpinBox::up-button, QSpinBox::down-button, QAbstractSpinBox::up-button, QAbstractSpinBox::down-button
+{
+	border: 3px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/dialog_button_normal.png") 3 3 3 3;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QAbstractSpinBox::up-button:pressed, QAbstractSpinBox::down-button:pressed
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/button_pressed.png");
+}
+
+QSpinBox::down-arrow, QAbstractSpinBox::down-arrow
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/arrow-down.png");
+}
+
+QSpinBox::up-arrow, QAbstractSpinBox::up-arrow
+{
+	image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/arrow-up.png");
+}
+
+/* --------------------------------------------------------------------
+	Menu
+	-------------------------------------------------------------------- */
+	
+QMenu, QListView, QComboBox QAbstractItemView
+{
+	padding: 0px;
+	border: 1px solid #000000;
+	background-color: $bgColor;
+	color: #000000;
+	selection-background-color: $selectedBgColor;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/box.png") 2 2 2 2;
+}
+
+QMenu::separator, QListView::separator, QComboBox::separator, QComboBox QAbstractItemView::separator
+{
+	padding: 3px;
+	margin-left: -5px;
+	margin-right: -5px;
+	border: none;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 1px solid transparent;
+	border-bottom: 2px solid transparent;
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/handle-h.png");
+	background-repeat: repeat-x;
+	background-position: center center;
+}
+
+QListView::item:selected, QMenu::item:selected, QComboBox::item:selected
+{
+	background-color: $selectedBgColor;
+	color: $selectedFgColor;
+}
+
+QMenu::menu-arrow, QToolButton::menu-arrow
+{
+	background-position: center;
+	background-repeat: no-repeat;
+	/*background-size: 10px;*/
+	min-height: 10px;
+	min-width: 10px;
+}
+
+QMenu[startMenu = "true"]
+{
+	padding: 0px;
+	border: 1px solid #000000;
+	border-left: 50px solid transparent;
+	background-color: $bgColor;
+	color: #000000;
+	selection-background-color: $selectedBgColor;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/box.png") 2 2 2 2;
+}
+
+/* --------------------------------------------------------------------
+	Text entry (Text edit, line edit)
+	-------------------------------------------------------------------- */
+	
+QTextEdit, QLineEdit
+{
+	min-width: 20px;
+	min-height: 16px;
+	padding-left: 2px;
+	padding-right: 2px;
+	color: #000000;
+	border: 2px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/entry.png") 2 2 2 2;
+	border-radius: 0px;
+}
+
+/* --------------------------------------------------------------------
+	Group box (frame)
+	-------------------------------------------------------------------- */
+	
+QGroupBox
+{
+	border: 1px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/frame_basic.png") 1 1 1 1;
+	border-radius: 0;
+	padding: 4px;
+	margin-top: 3px;
+	margin: 10px;
+}
+
+QGroupBox::title
+{
+	background-color: $bgColor;
+	bottom: 8px;
+	left: 8px;
+}
+
+/* --------------------------------------------------------------------
+	Progress bar
+	-------------------------------------------------------------------- */
+	
+QProgressBar
+{
+	padding: 2px;
+	background-color: $bgColor;
+	border: 1px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/frame_inset.png") 3 3 3 3;
+	color: #ffffff;
+	text-align: center;
+}
+
+QProgressBar:vertical
+{
+	min-width: 14px;
+}
+
+QProgressBar:horizontal
+{
+	min-height: 14px;
+}
+
+QProgressBar::chunk:horizontal
+{
+	margin: 3px;
+	padding: 9px 1px 9px 1px;
+	width: 10px;
+	min-height: 1px;
+	margin: -11px 0px -11px 0px;
+	background-color: $selectedBgColor;
+	border-right: 1px solid $bgColor;
+	border-left: 1px solid $bgColor
+}
+
+QProgressBar::chunk:vertical
+{
+	margin: 3px;
+	padding: 1px 7px 1px 7px;
+	min-width: 1px;
+	height: 10px;
+	margin: 0px -11px 0px -11px;
+	background-color: $selectedBgColor;
+	border-top: 1px solid $bgColor;
+	border-bottom: 1px solid $bgColor;
+}
+
+/* --------------------------------------------------------------------
+	Scroll bar
+	-------------------------------------------------------------------- */
+	
+QScrollBar
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/scrollbar_background.png");
+	/*background-size: 4px;*/
+}
+
+QScrollBar:horizontal
+{
+	padding: 0px 14px 0 14px;
+}
+
+QScrollBar:vertical
+{
+	padding: 14px 0px 14px 0px;
+}
+
+QScrollBar::handle
+{
+	background-color: $bgColor;
+	border: 2px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/scrollbar_button.png") 2 2 2 2;
+	min-width: 16px;
+	min-height: 16px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/scrollbar_button.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+QScrollBar::add-line:disabled, QScrollBar::sub-line:disabled
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/scrollbar_button_disabled.png");
+}
+
+QScrollBar::add-line:horizontal
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-right.png");
+}
+
+QScrollBar::add-line:horizontal:pressed
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-right-active.png");
+}
+
+QScrollBar::add-line:horizontal:disabled
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-right-insense.png");
+}
+
+QScrollBar::sub-line:horizontal
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-left.png");
+}
+
+QScrollBar::sub-line:horizontal:pressed
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-left-active.png");
+}
+
+QScrollBar::sub-line:horizontal:disabled
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-left-insense.png");
+}
+
+QScrollBar::add-line:vertical
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-down.png");
+}
+
+QScrollBar::add-line:vertical:pressed
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-down-active.png");
+}
+
+QScrollBar::add-line:vertical:disabled
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-down-insense.png");
+}
+
+QScrollBar::sub-line:vertical
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-up.png");
+}
+
+QScrollBar::sub-line:vertical:pressed
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-up-active.png");
+}
+
+QScrollBar::sub-line:vertical:disabled
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/stepper-up-insense.png");
+}
+
+/* --------------------------------------------------------------------
+	Tabs
+	-------------------------------------------------------------------- */
+	
+QTabBar::tab:top
+{
+	border-width: 5px 5px 2px 5px;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_top.png");
+	border-image-slice: 5 5 2 5;
+}
+
+QTabBar::tab:bottom
+{
+	border-width: 2px 5px 5px 5px;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_bottom.png");
+	border-image-slice: 2 5 5 5;
+}
+
+QTabBar::tab:right
+{
+	border-width: 4px 8px 6px 0px;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_right.png");
+	border-image-slice: 4 8 6 0;
+}
+
+QTabBar::tab:left
+{
+	border-width: 4px 0 6px 8px;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_left.png");
+	border-image-slice: 4 0 6 8;
+}
+
+QTabBar::tab:top:selected
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_top_checked.png");
+	border-image-slice: 2 5 5 5;
+}
+
+QTabBar::tab:bottom:selected
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_bottom_checked.png");
+	border-image-slice: 2 5 5 5;
+}
+
+QTabBar::tab:right:selected
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_right_checked.png");
+	border-image-slice: 4 8 6 0;
+}
+
+QTabBar::tab:left:selected
+{
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/notebook_left_checked.png");
+	border-image-slice: 4 0 6 8; 
+}
+
+QTabBar::close-button
+{
+	margin-bottom: -2px;
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/close_normal.png");
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+QTabBar::close-button:pressed
+{
+	background-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/close_pressed.png");
+}
+
+QFrame[outset = "true"]
+{
+	border: 3px solid #000000;
+	border-image: url("/Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/frame_outset.png") 3 3 3 3;
+	border-radius: 0;
+}
+
+QFrame[inset = "true"]
+{
+	border: 3px solid #000000;
+	border-image: url("//Users/adam/Desktop/Qt/WindowsExtremelyGoodEdition/resources/style/assets/frame_inset.png") 3 3 3 3;
+	border-radius: 0;
+}
