@@ -4,12 +4,10 @@
 
 #include "SystemWindow.h"
 
-QT_BEGIN_NAMESPACE
 namespace Ui
 {
 	class ControlWindow;
 }
-QT_END_NAMESPACE
 
 class ControlWindow : public QMainWindow
 {

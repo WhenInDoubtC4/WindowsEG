@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,7 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     App.cpp \
+    Apps/InternetExplorer.cpp \
     Apps/MessageBox.cpp \
+    Apps/Notepad.cpp \
+    Apps/Run.cpp \
+    FileSystem/FakeFileSystem.cpp \
     System.cpp \
     SystemElements/Desktop.cpp \
     SystemElements/DesktopIcon.cpp \
@@ -28,8 +32,12 @@ SOURCES += \
 
 HEADERS += \
     App.h \
+    Apps/InternetExplorer.h \
     Apps/MessageBox.h \
+    Apps/Notepad.h \
+    Apps/Run.h \
     ControlWindow.h \
+    FileSystem/FakeFileSystem.h \
     System.h \
     SystemElements/Desktop.h \
     SystemElements/DesktopIcon.h \
@@ -44,7 +52,9 @@ HEADERS += \
     SystemWindow.h
 
 FORMS += \
+    Apps/InternetExplorer.ui \
     Apps/MessageBox.ui \
+    Apps/Run.ui \
     ControlWindow.ui \
     SystemElements/DesktopIcon.ui \
     SystemElements/SystemMdiArea.ui \

@@ -40,6 +40,9 @@
    </property>
    <item alignment="Qt::AlignLeft">
     <widget class="QLabel" name="titleLabel">
+     <property name="styleSheet">
+      <string notr="true">color: #ffffff;</string>
+     </property>
      <property name="text">
       <string>Title</string>
      </property>

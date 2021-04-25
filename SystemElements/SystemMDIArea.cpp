@@ -5,6 +5,8 @@ SystemMdiArea::SystemMdiArea() : QMdiArea()
 	, _ui(new Ui::SystemMdiArea)
 {
 	_ui->setupUi(viewport());
+
+	setOption(QMdiArea::DontMaximizeSubWindowOnActivation);
 }
 
 SystemMdiArea::~SystemMdiArea()

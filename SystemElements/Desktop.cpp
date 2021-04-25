@@ -52,7 +52,7 @@ void Desktop::layOut()
 		if (icon.layoutPosition != QPoint(-1, -1)) continue;
 
 		//Find first free grid cell
-		for (QRect gridCell : _grid)
+		for (QRect gridCell : qAsConst(_grid))
 		{
 			//Check if position is free
 			bool isTaken = false;

@@ -1,7 +1,8 @@
 #pragma once
 
-#include <App.h>
 #include <QObject>
+
+#include "App.h"
 
 constexpr int BUTTON_MIN_WIDTH = 80;
 

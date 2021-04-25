@@ -140,21 +140,38 @@ QSlider::handle:vertical
 /* --------------------------------------------------------------------
 	Combo box
 	-------------------------------------------------------------------- */
-QComboBox
+/*QComboBox
 {
 	background-color: #c0c0c0;
+}*/
+
+QComboBox:editable
+{
+	color: #000000;
+	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
+	border: 2px solid #000000;
+	border-radius: 0px;
 }
 
 QComboBox::drop-down
 {
-	padding: 1px;
+	border-width: 3px;
+	border-image: url(":/Resources/Style/Assets/Box.png") 3 3 3 3;
+	color: #000000;
+	background-color: transparent;
+	/*padding: 1px;
 	padding-left: 4px;
 	margin-top: 2px;
 	margin-bottom: 2px;
 	margin-left: 2px;
 	margin-right: 2px;
 	min-width: 16px;
-	min-height: 15px;
+	min-height: 15px;*/
+}
+
+QComboBox::drop-down:pressed
+{
+	border-image: url(":/Resources/Style/Assets/Button-Pressed.png") 3 3 3 3;
 }
 
 QComboBox::down-arrow
@@ -257,6 +274,32 @@ QMenu::menu-arrow, QToolButton::menu-arrow
 	/*background-size: 10px;*/
 	min-height: 10px;
 	min-width: 10px;
+}
+
+QMenu::indicator
+{
+	padding-left: 10px;
+}
+
+QMenu::indicator:checked
+{
+	image: url(":/Resources/Style/Assets/Check.png");
+}
+
+QMenuBar
+{
+	padding-top: 1px;
+}
+
+QMenuBar::item
+{
+	color: #000000;
+}
+
+QMenuBar::item:pressed
+{
+	color: #ffffff;
+	background-color: #000080;
 }
 
 QMenu[startMenu = "true"]
@@ -534,6 +577,10 @@ QTabBar::close-button:pressed
 	background-image: url(":/Resources/Style/Assets/Close-Pressed.png");
 }
 
+/* --------------------------------------------------------------------
+	Frame
+	-------------------------------------------------------------------- */
+
 QFrame[outset = "true"]
 {
 	border: 3px solid #000000;
@@ -545,5 +592,63 @@ QFrame[inset = "true"]
 {
 	border: 3px solid #000000;
 	border-image: url(":/Resources/Style/Assets/Frame-Inset.png") 3 3 3 3;
+	border-radius: 0;
+}
+
+/* --------------------------------------------------------------------
+	Label
+	-------------------------------------------------------------------- */
+
+QLabel
+{
+	color: #000000;
+}
+
+/* --------------------------------------------------------------------
+	Toolbar
+	-------------------------------------------------------------------- */
+
+QToolBar
+{
+	border: 2px solid #000000;
+	border-image: url(":/Resources/Style/Assets/Frame-Simple.png") 2 2 2 2;
+	border-radius: 0;
+}
+
+QToolBar QToolButton
+{
+	color: #000000;
+}
+
+/* --------------------------------------------------------------------
+	Status bar
+	-------------------------------------------------------------------- */
+
+QStatusBar
+{
+	border: 3px solid #000000;
+	border-image: url(":/Resources/Style/Assets/Frame-Inset.png") 3 3 3 3;
+	border-radius: 0;
+}
+
+QStatusBar QWidget
+{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
+/*QStatusBar QSizeGrip
+{
+	margin: 0px;
+	border: 1px solid green;
+}*/
+
+QStatusBar::item
+{
+	border-top: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 3px solid #000000;
+	border-image: url(":/Resources/Style/Assets/Frame-Ridge.png") 3 3 3 3;
 	border-radius: 0;
 }

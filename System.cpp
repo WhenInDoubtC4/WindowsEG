@@ -11,11 +11,6 @@ void System::init(SystemMdiArea* mdiArea, SystemTaskbar* taskbar)
 	systemTaskbar = taskbar;
 }
 
-void System::addWindow(QWidget* window)
-{
-	systemMdiArea->addSubWindow(window);
-}
-
 void System::runApp(App* app)
 {
 	systemMdiArea->addSubWindow(app);
@@ -38,8 +33,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 	//Set default slots
 	icon->createShortcutActionSlot = [=]([[maybe_unused]] bool checked)
 	{
-		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows",
-									 "Windows cannot create a shortcut for this object.", MessageBox::messageBoxButtonSet::OK);
+		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows cannot create a shortcut for this object.", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
 			msgBox->close();
@@ -50,8 +44,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 
 	icon->deleteActionSlot = [=]([[maybe_unused]] bool checked)
 	{
-		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows",
-									 "Windows has encountered an error while trying to delete this object", MessageBox::messageBoxButtonSet::OK);
+		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows has encountered an error while trying to delete this object", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
 			msgBox->close();
@@ -67,8 +60,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 
 	icon->propertiesActionSlot = [=]([[maybe_unused]] bool checked)
 	{
-		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows",
-									 "Windows was unable to show properties for this object.", MessageBox::messageBoxButtonSet::OK);
+		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows was unable to show properties for this object.", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
 			msgBox->close();
@@ -76,4 +68,9 @@ void System::addIconToDesktop(DesktopIcon* icon)
 		});
 		runApp(msgBox);
 	};
+}
+
+QRect System::getMdiAreaGeometry()
+{
+	return systemMdiArea->geometry();
 }

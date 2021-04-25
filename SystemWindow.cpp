@@ -5,6 +5,12 @@
 #include "SystemElements/DesktopIcon.h"
 
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include "FileSystem/FakeFileSystem.h"
+
+#include "Apps/Run.h"
+#include "Apps/InternetExplorer.h"
 
 SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
   , _ui(new Ui::SystemWindow)
@@ -13,7 +19,7 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 {
 	_ui->setupUi(this);
 
-	QFile stylesheetFile(":/Resources/Style/Main.qss");
+	QFile stylesheetFile(":/Resources/Style/Main.css");
 	stylesheetFile.open(QFile::ReadOnly);
 	QString stylesheet = QLatin1String(stylesheetFile.readAll());
 	setStyleSheet(stylesheet);
@@ -46,6 +52,19 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 	System::addIconToDesktop(icon3);
 	System::addIconToDesktop(icon4);
 	System::addIconToDesktop(icon5);
+
+	QFile jsonFile = QFile("/Users/adam/Desktop/appSample.json");
+	jsonFile.open(QIODevice::ReadOnly);
+	QJsonDocument json = QJsonDocument::fromJson(jsonFile.readAll());
+	auto app = FakeFileSystem::jsonObjectToApp(json.object());
+
+	if (app) System::runApp(app);
+
+	auto r = new Run();
+	System::runApp(r);
+
+	auto runapp = new InternetExplorer();
+	System::runApp(runapp);
 }
 
 SystemWindow::~SystemWindow()

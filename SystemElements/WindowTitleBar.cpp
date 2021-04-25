@@ -1,6 +1,8 @@
 #include "WindowTitleBar.h"
 #include "ui_WindowTitleBar.h"
 
+#include <QDebug>
+
 WindowTitleBar::WindowTitleBar(QWidget* parent, QMdiSubWindow* parentWindow, buttons buttonSet) : QWidget(parent)
   , _ui(new Ui::WindowTitleBar)
   , _window(parentWindow)
@@ -38,7 +40,6 @@ WindowTitleBar::WindowTitleBar(QWidget* parent, QMdiSubWindow* parentWindow, but
 	}
 
 	show();
-
 }
 
 WindowTitleBar::~WindowTitleBar()
@@ -100,16 +101,22 @@ void WindowTitleBar::onMinMaxButtonPressed()
 {
 	if (!_window->isMaximized())
 	{
+		_normalWindowMinimumSize = _window->minimumSizeHint();
 		_window->showMaximized();
+		_minMaxButton->setIcon(QIcon(":/Resources/Style/Assets/Icon-Restore.png"));
 	}
 	else
 	{
+		_window->adjustSize();
+		_window->setMinimumSize(_normalWindowMinimumSize);
 		_window->showNormal();
+		_minMaxButton->setIcon(QIcon(":/Resources/Style/Assets/Icon-Max.png"));
 	}
 }
 
 void WindowTitleBar::onHideButtonPressed()
 {
+	_window->showMinimized();
 }
 
 void WindowTitleBar::setTitle(const QString& title)

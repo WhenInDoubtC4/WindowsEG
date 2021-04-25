@@ -60,7 +60,7 @@
         <file>Resources/Style/Assets/Icon-Hide.png</file>
         <file>resources/style/assets/scale.png</file>
         <file>resources/style/assets/slider.png</file>
-        <file>Resources/Style/Main.qss</file>
+        <file>Resources/Style/Main.css</file>
         <file>Resources/Style/Assets/Icons/Documents.png</file>
         <file>Resources/Style/Assets/Icons/download.png</file>
         <file>Resources/Style/Assets/Icons/Programs.png</file>
@@ -74,5 +74,19 @@
         <file>Resources/Style/Assets/Icons/Error.ico</file>
         <file>Resources/Style/Assets/Icons/Info.ico</file>
         <file>Resources/Style/Assets/Icons/Shortcut.ico</file>
+        <file>Resources/Style/Assets/Check.png</file>
+        <file>Resources/Style/Assets/Icons/GoPrev.png</file>
+        <file>Resources/Style/Assets/Icons/GoNext.png</file>
+        <file>Resources/Style/Assets/Icons/Stop.png</file>
+        <file>Resources/Style/Assets/Icons/Refresh.png</file>
+        <file>Resources/Style/Assets/Icons/WebSearch.png</file>
+        <file>Resources/Style/Assets/Icons/Home.png</file>
+        <file>Resources/Style/Assets/Icons/Print.png</file>
+        <file>Resources/Style/Assets/Icons/Mail.ico</file>
+        <file>Resources/Style/Assets/Icons/Font.ico</file>
+        <file>Resources/Style/Assets/Frame-Simple.png</file>
+        <file>Resources/Style/Assets/Frame-Ridge.png</file>
+        <file>Resources/Style/WebEngine.css</file>
+        <file>Resources/Style/Assets/Icon-Restore.png</file>
     </qresource>
 </RCC>

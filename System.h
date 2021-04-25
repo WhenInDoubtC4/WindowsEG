@@ -15,10 +15,9 @@ public:
 	static void init(SystemMdiArea* mdiArea, SystemTaskbar* taskbar);
 
 	static void runApp(App* app);
-
-	static void addWindow(QWidget* window);
-
 	static void addIconToDesktop(DesktopIcon* icon);
+
+	static QRect getMdiAreaGeometry();
 
 private:
 	System(QObject* parent = nullptr);

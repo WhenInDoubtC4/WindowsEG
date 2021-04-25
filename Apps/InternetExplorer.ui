@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>InternetExplorer</class>
+ <widget class="QMainWindow" name="InternetExplorer">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>300</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="animated">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="centralLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>1</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item row="0" column="0">
+     <widget class="QWebEngineView" name="webEngineView" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_file_newWindow"/>
+    <addaction name="action_file_open"/>
+    <addaction name="action_file_save"/>
+    <addaction name="action_file_saveAsFile"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_newMessage"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_pageSetup"/>
+    <addaction name="action_file_print"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_createShortcut"/>
+    <addaction name="action_file_properties"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_close"/>
+   </widget>
+   <widget class="QMenu" name="menu_edit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="action_edit_cut"/>
+    <addaction name="action_edit_copy"/>
+    <addaction name="action_edit_paste"/>
+    <addaction name="separator"/>
+    <addaction name="action_edit_selectAll"/>
+    <addaction name="separator"/>
+    <addaction name="action_edit_findOnThisPage"/>
+   </widget>
+   <widget class="QMenu" name="menu_view">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="action_view_toolbar"/>
+    <addaction name="action_view_statusbar"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_fonts"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_stop"/>
+    <addaction name="action_view_refresh"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_source"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_options"/>
+   </widget>
+   <widget class="QMenu" name="menu_go">
+    <property name="title">
+     <string>Go</string>
+    </property>
+    <addaction name="action_go_back"/>
+    <addaction name="action_go_forward"/>
+    <addaction name="separator"/>
+    <addaction name="action_go_startPage"/>
+    <addaction name="action_go_searchTheWeb"/>
+    <addaction name="action_go_bestOfTheWeb"/>
+    <addaction name="separator"/>
+    <addaction name="action_go_readMail"/>
+    <addaction name="action_go_readNews"/>
+    <addaction name="separator"/>
+    <addaction name="action_go_openHistoryFolder"/>
+   </widget>
+   <widget class="QMenu" name="menu_favorites">
+    <property name="title">
+     <string>Favorites</string>
+    </property>
+    <addaction name="action_favorites_addToFavorites"/>
+    <addaction name="action_favorites_organizeFavorites"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_help">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="action_help_aboutIE"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_edit"/>
+   <addaction name="menu_view"/>
+   <addaction name="menu_go"/>
+   <addaction name="menu_favorites"/>
+   <addaction name="menu_help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>22</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_toolbar_back"/>
+   <addaction name="action_toolbar_forward"/>
+   <addaction name="action_toolbar_stop"/>
+   <addaction name="action_toolbar_refresh"/>
+   <addaction name="action_toolbar_home"/>
+   <addaction name="action_toolbar_search"/>
+   <addaction name="action_toolbar_print"/>
+   <addaction name="action_toolbar_font"/>
+   <addaction name="action_toolbar_mail"/>
+  </widget>
+  <widget class="QToolBar" name="addressBar">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+  </widget>
+  <action name="action_file_newWindow">
+   <property name="text">
+    <string>New Window</string>
+   </property>
+  </action>
+  <action name="action_file_open">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="action_file_save">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="action_file_saveAsFile">
+   <property name="text">
+    <string>Save As File...</string>
+   </property>
+  </action>
+  <action name="action_file_newMessage">
+   <property name="text">
+    <string>New Message...</string>
+   </property>
+  </action>
+  <action name="action_file_pageSetup">
+   <property name="text">
+    <string>Page Setup...</string>
+   </property>
+  </action>
+  <action name="action_file_print">
+   <property name="text">
+    <string>Print...</string>
+   </property>
+  </action>
+  <action name="action_file_createShortcut">
+   <property name="text">
+    <string>Create Shortcut</string>
+   </property>
+  </action>
+  <action name="action_file_properties">
+   <property name="text">
+    <string>Properties</string>
+   </property>
+  </action>
+  <action name="action_file_close">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="action_edit_cut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="action_edit_copy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="action_edit_paste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="action_edit_selectAll">
+   <property name="text">
+    <string>Select All</string>
+   </property>
+  </action>
+  <action name="action_edit_findOnThisPage">
+   <property name="text">
+    <string>Find (on this page)...</string>
+   </property>
+  </action>
+  <action name="action_view_toolbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Toolbar</string>
+   </property>
+  </action>
+  <action name="action_view_statusbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Status Bar</string>
+   </property>
+  </action>
+  <action name="action_view_fonts">
+   <property name="text">
+    <string>Fonts</string>
+   </property>
+  </action>
+  <action name="action_view_stop">
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="action_view_refresh">
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="action_view_source">
+   <property name="text">
+    <string>Source</string>
+   </property>
+  </action>
+  <action name="action_view_options">
+   <property name="text">
+    <string>Options...</string>
+   </property>
+  </action>
+  <action name="action_go_back">
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </action>
+  <action name="action_go_forward">
+   <property name="text">
+    <string>Forward</string>
+   </property>
+  </action>
+  <action name="action_go_startPage">
+   <property name="text">
+    <string>Start Page</string>
+   </property>
+  </action>
+  <action name="action_go_searchTheWeb">
+   <property name="text">
+    <string>Search the Web</string>
+   </property>
+  </action>
+  <action name="action_go_bestOfTheWeb">
+   <property name="text">
+    <string>Best of the Web</string>
+   </property>
+  </action>
+  <action name="action_go_readMail">
+   <property name="text">
+    <string>Read Mail</string>
+   </property>
+  </action>
+  <action name="action_go_readNews">
+   <property name="text">
+    <string>Read News</string>
+   </property>
+  </action>
+  <action name="action_go_openHistoryFolder">
+   <property name="text">
+    <string>Open History Folder</string>
+   </property>
+  </action>
+  <action name="action_favorites_addToFavorites">
+   <property name="text">
+    <string>Add To Favorites...</string>
+   </property>
+  </action>
+  <action name="action_favorites_organizeFavorites">
+   <property name="text">
+    <string>Organize Favorites...</string>
+   </property>
+  </action>
+  <action name="action_help_aboutIE">
+   <property name="text">
+    <string>About Internet Explorer</string>
+   </property>
+  </action>
+  <action name="action_toolbar_back">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/GoPrev.png</normaloff>:/Resources/Style/Assets/Icons/GoPrev.png</iconset>
+   </property>
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </action>
+  <action name="action_toolbar_forward">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/GoNext.png</normaloff>:/Resources/Style/Assets/Icons/GoNext.png</iconset>
+   </property>
+   <property name="text">
+    <string>Forward</string>
+   </property>
+  </action>
+  <action name="action_toolbar_stop">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Stop.png</normaloff>:/Resources/Style/Assets/Icons/Stop.png</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+  </action>
+  <action name="action_toolbar_refresh">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Refresh.png</normaloff>:/Resources/Style/Assets/Icons/Refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>Refresh</string>
+   </property>
+  </action>
+  <action name="action_toolbar_home">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Home.png</normaloff>:/Resources/Style/Assets/Icons/Home.png</iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+  <action name="action_toolbar_search">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/WebSearch.png</normaloff>:/Resources/Style/Assets/Icons/WebSearch.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+  </action>
+  <action name="action_toolbar_print">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Print.png</normaloff>:/Resources/Style/Assets/Icons/Print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="action_toolbar_mail">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Mail.ico</normaloff>:/Resources/Style/Assets/Icons/Mail.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Mail</string>
+   </property>
+  </action>
+  <action name="action_toolbar_font">
+   <property name="icon">
+    <iconset resource="../res.qrc">
+     <normaloff>:/Resources/Style/Assets/Icons/Font.ico</normaloff>:/Resources/Style/Assets/Icons/Font.ico</iconset>
+   </property>
+   <property name="text">
+    <string>font</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

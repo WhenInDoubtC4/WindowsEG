@@ -21,5 +21,8 @@ protected:
 
 private:
 	TaskbarElement* _taskbarElement;
+
+private slots:
+	void onTaskbarElementPressed();
 };
 

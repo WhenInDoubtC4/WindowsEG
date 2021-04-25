@@ -57,6 +57,8 @@ private:
 
 	bool _isFocused = false;
 
+	QSize _normalWindowMinimumSize;
+
 signals:
 	void requestClose();
 };
