@@ -1,8 +1,13 @@
 #pragma once
 
 #include <QMainWindow>
+#include <QFileDialog>
+#include <QStandardPaths>
+#include <QMessageBox>
 
 #include "SystemWindow.h"
+#include "Control/NotepadControl.h"
+#include "Control/InternetExplorerControl.h"
 
 namespace Ui
 {

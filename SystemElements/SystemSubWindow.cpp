@@ -3,13 +3,11 @@
 
 #include <QDebug>
 
-SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet)
-	: _ui(new Ui::SystemSubWindow)
+SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet) : QMdiSubWindow(nullptr, Qt::FramelessWindowHint)
+	, _ui(new Ui::SystemSubWindow)
 	, _uiContainer(new QWidget(this))
 	, _titleBar(new WindowTitleBar(this, this, buttonSet))
 {
-
-	setWindowFlags(Qt::FramelessWindowHint);
 	setAttribute(Qt::WA_DeleteOnClose);
 	layout()->addWidget(_uiContainer);
 
@@ -22,8 +20,10 @@ SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet)
 
 SystemSubWindow::~SystemSubWindow()
 {
-	delete _ui;
+	while(!_resizeGrips.isEmpty()) delete _resizeGrips.takeLast();
+	delete _titleBar;
 	delete _uiContainer;
+	delete _ui;
 }
 
 void SystemSubWindow::onCloseRequested()
@@ -99,4 +99,29 @@ bool SystemSubWindow::eventFilter([[maybe_unused]] QObject* watched, QEvent* eve
 	}
 
 	return false;
+}
+
+void SystemSubWindow::enableFrameResize()
+{
+	_resizeGripLayout = new QGridLayout();
+
+	for(int i = 0; i < 4; i++)
+	{
+		auto grip = new QSizeGrip(this);
+		grip->setFixedSize(10, 10);
+		_resizeGrips << grip;
+	}
+	_resizeGripLayout->addWidget(_resizeGrips[0], 0, 0, Qt::AlignTop | Qt::AlignLeft);
+	_resizeGripLayout->addWidget(_resizeGrips[1], 0, 2, Qt::AlignTop | Qt::AlignRight);
+	_resizeGripLayout->addWidget(_resizeGrips[2], 2, 0, Qt::AlignBottom | Qt::AlignLeft);
+	_resizeGripLayout->addWidget(_resizeGrips[3], 2, 2, Qt::AlignBottom | Qt::AlignRight);
+}
+
+void SystemSubWindow::resizeEvent(QResizeEvent* event)
+{
+	QMdiSubWindow::resizeEvent(event);
+
+	//Unorthodox solution
+	if (!_resizeGripLayout) return;
+	_resizeGripLayout->setGeometry(QRect(QPoint(0, 0), size()));
 }

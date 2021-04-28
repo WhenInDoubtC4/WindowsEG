@@ -10,7 +10,7 @@
 #include "FileSystem/FakeFileSystem.h"
 
 #include "Apps/Run.h"
-#include "Apps/InternetExplorer.h"
+#include "Apps/Notepad.h"
 
 SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
   , _ui(new Ui::SystemWindow)
@@ -63,7 +63,7 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 	auto r = new Run();
 	System::runApp(r);
 
-	auto runapp = new InternetExplorer();
+	auto runapp = new Notepad();
 	System::runApp(runapp);
 }
 

@@ -14,6 +14,9 @@ SOURCES += \
     Apps/MessageBox.cpp \
     Apps/Notepad.cpp \
     Apps/Run.cpp \
+    Control/AppControl.cpp \
+    Control/InternetExplorerControl.cpp \
+    Control/NotepadControl.cpp \
     FileSystem/FakeFileSystem.cpp \
     System.cpp \
     SystemElements/Desktop.cpp \
@@ -27,6 +30,7 @@ SOURCES += \
     SystemElements/TaskbarElement.cpp \
     SystemElements/WindowTitleBar.cpp \
     SystemWindow.cpp \
+    Util/LineEditList.cpp \
     main.cpp \
     ControlWindow.cpp
 
@@ -36,6 +40,9 @@ HEADERS += \
     Apps/MessageBox.h \
     Apps/Notepad.h \
     Apps/Run.h \
+    Control/AppControl.h \
+    Control/InternetExplorerControl.h \
+    Control/NotepadControl.h \
     ControlWindow.h \
     FileSystem/FakeFileSystem.h \
     System.h \
@@ -49,11 +56,13 @@ HEADERS += \
     SystemElements/SystemTaskbar.h \
     SystemElements/TaskbarElement.h \
     SystemElements/WindowTitleBar.h \
-    SystemWindow.h
+    SystemWindow.h \
+    Util/LineEditList.h
 
 FORMS += \
     Apps/InternetExplorer.ui \
     Apps/MessageBox.ui \
+    Apps/Notepad.ui \
     Apps/Run.ui \
     ControlWindow.ui \
     SystemElements/DesktopIcon.ui \

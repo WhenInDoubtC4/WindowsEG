@@ -319,8 +319,6 @@ QTextEdit, QLineEdit
 {
 	min-width: 20px;
 	min-height: 16px;
-	padding-left: 2px;
-	padding-right: 2px;
 	color: #000000;
 	border: 2px solid #000000;
 	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
@@ -621,6 +619,15 @@ QToolBar QToolButton
 }
 
 /* --------------------------------------------------------------------
+	Size grip
+	-------------------------------------------------------------------- */
+
+QSizeGrip
+{
+	background-color: transparent;
+}
+
+/* --------------------------------------------------------------------
 	Status bar
 	-------------------------------------------------------------------- */
 
@@ -637,11 +644,11 @@ QStatusBar QWidget
 	margin-right: 3px;
 }
 
-/*QStatusBar QSizeGrip
+QStatusBar QSizeGrip
 {
 	margin: 0px;
 	border: 1px solid green;
-}*/
+}
 
 QStatusBar::item
 {

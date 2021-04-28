@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QMdiSubWindow>
 #include <QMenu>
+#include <QGridLayout>
+#include <QSizeGrip>
 
 #include "WindowTitleBar.h"
 
@@ -23,10 +25,13 @@ public:
 	QWidget* getContentPlaceholder() const;
 	WindowTitleBar* getTitleBar() const;
 
+	void enableFrameResize();
+
 protected:
 	virtual void focusInEvent(QFocusEvent* focusInEvent) override;
 	virtual void focusOutEvent(QFocusEvent* focusOutEvent) override;
 	virtual bool eventFilter(QObject* watched, QEvent* event) override;
+	virtual void resizeEvent(QResizeEvent* event) override;
 
 private:
 	Ui::SystemSubWindow* _ui = nullptr;
@@ -36,6 +41,9 @@ private:
 
 	bool _isFocusSetUp = false;
 	bool _ignoreUnfocusOnce = false;
+
+	QGridLayout* _resizeGripLayout = nullptr;
+	QList<QSizeGrip*> _resizeGrips;
 
 private slots:
 	virtual void onCloseRequested();
