@@ -1,7 +1,5 @@
 #include "InternetExplorerControl.h"
 
-#include <QDebug>
-
 InternetExplorerControl::InternetExplorerControl()
 {
 	CONSTRUCT_ONCE
@@ -18,10 +16,4 @@ InternetExplorerControl::InternetExplorerControl()
 			<< _b;
 
 	getControlItemsList() << row1 << row2;
-}
-
-void InternetExplorerControl::updateConfigData(QByteArray& data)
-{
-	QDataStream stream(&data, QIODevice::WriteOnly);
-	stream << _a->text() << _b->text();
 }

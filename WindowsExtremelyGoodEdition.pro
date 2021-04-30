@@ -31,6 +31,7 @@ SOURCES += \
     SystemElements/WindowTitleBar.cpp \
     SystemWindow.cpp \
     Util/LineEditList.cpp \
+    Util/RangedSpinBox.cpp \
     main.cpp \
     ControlWindow.cpp
 
@@ -57,7 +58,8 @@ HEADERS += \
     SystemElements/TaskbarElement.h \
     SystemElements/WindowTitleBar.h \
     SystemWindow.h \
-    Util/LineEditList.h
+    Util/LineEditList.h \
+    Util/RangedSpinBox.h
 
 FORMS += \
     Apps/InternetExplorer.ui \

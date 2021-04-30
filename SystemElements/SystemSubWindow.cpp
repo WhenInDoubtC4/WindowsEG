@@ -1,8 +1,6 @@
 #include "SystemSubWindow.h"
 #include "ui_SystemSubWindow.h"
 
-#include <QDebug>
-
 SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet) : QMdiSubWindow(nullptr, Qt::FramelessWindowHint)
 	, _ui(new Ui::SystemSubWindow)
 	, _uiContainer(new QWidget(this))
@@ -124,4 +122,26 @@ void SystemSubWindow::resizeEvent(QResizeEvent* event)
 	//Unorthodox solution
 	if (!_resizeGripLayout) return;
 	_resizeGripLayout->setGeometry(QRect(QPoint(0, 0), size()));
+}
+
+void SystemSubWindow::attachTo(SystemSubWindow* window)
+{
+	if (_attachedWindow) throw std::runtime_error("Already attached to a different window");
+
+	QObject::connect(this, &QMdiSubWindow::destroyed, [=]()
+	{
+		_attachedWindow = nullptr;
+		window->setDisabled(false);
+		window->setFocus();
+	});
+
+	_attachedWindow = window;
+	window->setDisabled(true);
+}
+
+void SystemSubWindow::showEvent(QShowEvent* showEvent)
+{
+	if (_attachedWindow) move(_attachedWindow->geometry().center() - QRect(QPoint(0, 0), size()).center());
+
+	QMdiSubWindow::showEvent(showEvent);
 }

@@ -29,10 +29,13 @@ void App::close()
 
 void App::onTaskbarElementPressed()
 {
-	if (isMinimized())
+	if (!isEnabled())
 	{
-		showNormal();
+		_taskbarElement->setChecked(false);
+		return;
 	}
+
+	if (isMinimized()) showNormal();
 
 	//Make sure it stays checked
 	_taskbarElement->setChecked(true);

@@ -1,7 +1,5 @@
 #include "AppControl.h"
 
-#include <QDebug>
-
 AppControl::AppControl() : QObject()
 {
 
@@ -21,30 +19,16 @@ void AppControl::setupControlWidgets(QTreeWidget* treeWidget, const QString& tit
 	auto resetButton = new QPushButton("Reset");
 	auto activeButton = new QPushButton("Active");
 	activeButton->setCheckable(true);
-	auto applyButton = new QPushButton("Apply");
 
-	QObject::connect(applyButton, &QPushButton::pressed, [=]()
+	QObject::connect(activeButton, &QPushButton::clicked, [=](bool checked)
 	{
-		QByteArray data;
-		updateConfigData(data);
-		emit configApplied(data);
-
-		qDebug() << "Applied data:" << data;
-	});
-
-	QObject::connect(activeButton, &QPushButton::toggled, [=](bool checked)
-	{
-		QByteArray data;
-		updateConfigData(data);
-		emit configToggled(checked);
-		emit configApplied(data);
+		_isConfigActive = checked;
 	});
 
 	titleLayout->addWidget(new QLabel(title));
 	titleLayout->addStretch();
 	titleLayout->addWidget(resetButton, 0, Qt::AlignRight);
 	titleLayout->addWidget(activeButton, 0, Qt::AlignRight);
-	titleLayout->addWidget(applyButton, 0, Qt::AlignRight);
 
 	auto rootItem = new QTreeWidgetItem();
 	treeWidget->addTopLevelItem(rootItem);
@@ -85,7 +69,7 @@ void AppControl::loadAll(QJsonDocument& jsonDocument)
 	}
 }
 
-QList<QString> AppControl::toStringList(const QJsonValueRef& jsonValue)
+QList<QString> AppControl::jsonToStringList(const QJsonValueRef& jsonValue)
 {
 	QList<QString> stringList;
 	for (QVariant& element : jsonValue.toArray().toVariantList())
@@ -93,4 +77,9 @@ QList<QString> AppControl::toStringList(const QJsonValueRef& jsonValue)
 		stringList << qvariant_cast<QString>(element);
 	}
 	return stringList;
+}
+
+bool AppControl::isConfigActive()
+{
+	return _isConfigActive;
 }

@@ -14,8 +14,5 @@ private:
 
 	QLineEdit* _a = nullptr;
 	QLineEdit* _b = nullptr;
-
-protected:
-	virtual void updateConfigData(QByteArray& data) override;
 };
 

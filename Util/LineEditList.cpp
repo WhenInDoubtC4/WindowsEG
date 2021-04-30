@@ -55,7 +55,9 @@ void LineEditList::addItem(const QString& text)
 
 	QObject::connect(removeButton, &QPushButton::pressed, [=]()
 	{
-		delete _listWidget->takeItem(_listWidget->row(newItem));
+		int index = _listWidget->row(newItem);
+		delete _listWidget->takeItem(index);
+		_fields.takeAt(index);
 	});
 }
 
@@ -69,4 +71,11 @@ QList<QString> LineEditList::getTextInAllFields() const
 	QList<QString> text;
 	for (QLineEdit* field : qAsConst(_fields)) text << field->text();
 	return text;
+}
+
+QString LineEditList::selectRandom() const
+{
+	QList<QString> text = getTextInAllFields();
+	int index = QRandomGenerator::global()->bounded(text.size());
+	return text[index];
 }

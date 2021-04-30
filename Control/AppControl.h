@@ -28,7 +28,7 @@ public:
 		_instances << new T;
 	}
 
-	template<typename T>
+	template<typename T, typename = std::enable_if_t<std::is_base_of_v<AppControl, T>>>
 	static T* getInstance()
 	{
 		for (auto instance : qAsConst(_instances)) if (typeid (*instance) == typeid (T)) return dynamic_cast<T*>(instance);
@@ -40,24 +40,22 @@ public:
 	static QJsonDocument saveAll();
 	static void loadAll(QJsonDocument& jsonDocument);
 
+	bool isConfigActive();
+
 protected:
 	AppControl();
 
 	typedef QList<QWidget*> row;
 	QList<row>& getControlItemsList();
 
-	virtual void updateConfigData([[maybe_unused]] QByteArray& data){};
 	virtual void setSaveData([[maybe_unused]] QJsonObject& data){};
 	virtual void load([[maybe_unused]] QJsonObject& data){};
 
-	QList<QString> toStringList(const QJsonValueRef& jsonValue);
+	QList<QString> jsonToStringList(const QJsonValueRef& jsonValue);
 
 private:
 	inline static QList<AppControl*> _instances;
-	inline static QMap<AppControl*, QList<QList<QWidget*>>> _controlItems;
+	inline static QMap<AppControl*, QList<row>> _controlItems;
 
-signals:
-	void configApplied(QByteArray& data);
-	void configToggled(bool activated = false);
-	void onConfigReset();
+	bool _isConfigActive = false;
 };

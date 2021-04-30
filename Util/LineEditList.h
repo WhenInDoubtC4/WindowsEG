@@ -8,6 +8,7 @@
 #include <QFrame>
 #include <QLineEdit>
 #include <QPushButton>
+#include <QRandomGenerator>
 
 class LineEditList : public QWidget
 {
@@ -21,6 +22,8 @@ public:
 	void addFromStringList(const QList<QString> stringList);
 
 	QList<QString> getTextInAllFields() const;
+
+	QString selectRandom() const;
 
 private:
 	QVBoxLayout* _layout = nullptr;

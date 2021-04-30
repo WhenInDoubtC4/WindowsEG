@@ -27,11 +27,14 @@ public:
 
 	void enableFrameResize();
 
+	void attachTo(SystemSubWindow* window);
+
 protected:
 	virtual void focusInEvent(QFocusEvent* focusInEvent) override;
 	virtual void focusOutEvent(QFocusEvent* focusOutEvent) override;
 	virtual bool eventFilter(QObject* watched, QEvent* event) override;
 	virtual void resizeEvent(QResizeEvent* event) override;
+	virtual void showEvent(QShowEvent* showEvent) override;
 
 private:
 	Ui::SystemSubWindow* _ui = nullptr;
@@ -44,6 +47,8 @@ private:
 
 	QGridLayout* _resizeGripLayout = nullptr;
 	QList<QSizeGrip*> _resizeGrips;
+
+	SystemSubWindow* _attachedWindow = nullptr;
 
 private slots:
 	virtual void onCloseRequested();
