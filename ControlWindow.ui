@@ -30,11 +30,29 @@
         <string>Apps</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
+        <property name="leftMargin">
+         <number>2</number>
+        </property>
+        <property name="topMargin">
+         <number>2</number>
+        </property>
+        <property name="rightMargin">
+         <number>2</number>
+        </property>
+        <property name="bottomMargin">
+         <number>2</number>
+        </property>
         <item row="0" column="0">
          <widget class="QTreeWidget" name="treeWidget">
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
           <property name="columnCount">
            <number>2</number>
           </property>
+          <attribute name="headerDefaultSectionSize">
+           <number>300</number>
+          </attribute>
           <column>
            <property name="text">
             <string notr="true">Setting</string>

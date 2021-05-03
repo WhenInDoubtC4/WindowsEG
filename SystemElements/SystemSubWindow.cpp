@@ -130,13 +130,20 @@ void SystemSubWindow::attachTo(SystemSubWindow* window)
 
 	QObject::connect(this, &QMdiSubWindow::destroyed, [=]()
 	{
-		_attachedWindow = nullptr;
-		window->setDisabled(false);
-		window->setFocus();
+		detach();
 	});
 
 	_attachedWindow = window;
 	window->setDisabled(true);
+}
+
+void SystemSubWindow::detach()
+{
+	if (!_attachedWindow) return;
+
+	_attachedWindow->setDisabled(false);
+	_attachedWindow->setFocus();
+	_attachedWindow = nullptr;
 }
 
 void SystemSubWindow::showEvent(QShowEvent* showEvent)

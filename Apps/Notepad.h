@@ -34,8 +34,20 @@ private:
 	QMainWindow* _uiWidget = nullptr;
 	QBoxLayout* _uiLayout = nullptr;
 
+	NotepadControl* _controller = nullptr;
+
+	void showMessageBox(const QString& text);
+
+	int _saveDialogLoopCount = 0;
+	void loopSaveDialog();
+
 private slots:
+	void cutText();
+	void copyText();
 	void pasteText();
 	void deleteSelection();
+
+	void showFirstSaveDialog();
+	void showSaveFileSelector();
 };
 

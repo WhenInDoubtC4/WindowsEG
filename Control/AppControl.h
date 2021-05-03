@@ -50,6 +50,7 @@ protected:
 
 	virtual void setSaveData([[maybe_unused]] QJsonObject& data){};
 	virtual void load([[maybe_unused]] QJsonObject& data){};
+	virtual void resetToDefault(){};
 
 	QList<QString> jsonToStringList(const QJsonValueRef& jsonValue);
 

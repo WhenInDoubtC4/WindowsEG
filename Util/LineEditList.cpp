@@ -11,6 +11,7 @@ LineEditList::LineEditList(QList<QString> items, QWidget* parent) : QWidget(pare
   , _addItemButton(new QPushButton("Add"))
 {
 	_layout->setMargin(0);
+	_layout->setSpacing(0);
 	_layout->addWidget(_listWidget);
 	_layout->addWidget(_addItemFrame);
 	_addItemLayout->setMargin(0);

@@ -39,6 +39,8 @@ MessageBox::MessageBox(messageBoxType type, const QString& title, const QString&
 		case MessageBox::messageBoxButtonSet::YES_NO:
 			_buttons << new QPushButton("Yes") << new QPushButton("No");
 			break;
+		case MessageBox::messageBoxButtonSet::YES_NO_CANCEL:
+			_buttons << new QPushButton("Yes") << new QPushButton("No") << new QPushButton("Cancel");
 		case MessageBox::messageBoxButtonSet::CUSTOM:
 			break;
 	}

@@ -1,21 +1,23 @@
 #include "RangedSpinBox.h"
 
-RangedSpinBox::RangedSpinBox(QWidget* parent) : QWidget(parent)
+RangedSpinBox::RangedSpinBox(double min, double max, double defaultMin, double defaultMax, double step, QWidget* parent) : QWidget(parent)
   , _layout(new QHBoxLayout(this))
   , _minSpinBox(new QDoubleSpinBox())
   , _maxSpinBox(new QDoubleSpinBox())
 {
+	_layout->setMargin(2);
 	_layout->addWidget(_minSpinBox);
 	_layout->addWidget(_maxSpinBox);
 
-	_minSpinBox->setMinimum(0.f);
-	_minSpinBox->setMaximum(1.f);
-	_minSpinBox->setSingleStep(0.1f);
+	_minSpinBox->setMinimum(min);
+	_minSpinBox->setMaximum(max);
+	_minSpinBox->setSingleStep(step);
+	_minSpinBox->setValue(defaultMin);
 	_minSpinBox->setPrefix("Min: ");
-	_maxSpinBox->setMinimum(0.f);
-	_maxSpinBox->setMaximum(1.f);
-	_maxSpinBox->setSingleStep(0.1f);
-	_maxSpinBox->setValue(1.f);
+	_maxSpinBox->setMinimum(min);
+	_maxSpinBox->setMaximum(max);
+	_maxSpinBox->setSingleStep(step);
+	_maxSpinBox->setValue(defaultMax);
 	_maxSpinBox->setPrefix("Max: ");
 
 	QObject::connect(_minSpinBox, &QDoubleSpinBox::editingFinished, this, &RangedSpinBox::validateValue);
@@ -62,4 +64,25 @@ void RangedSpinBox::setMin(double value)
 void RangedSpinBox::setMax(double value)
 {
 	_maxSpinBox->setValue(value);
+}
+
+void RangedSpinBox::setPrecision(int decimals)
+{
+	_minSpinBox->setDecimals(decimals);
+	_maxSpinBox->setDecimals(decimals);
+}
+
+QJsonObject RangedSpinBox::getJsonObject() const
+{
+	QJsonObject object;
+	object["min"] = getMin();
+	object["max"] = getMax();
+
+	return object;
+}
+
+void RangedSpinBox::loadFromJson(const QJsonValueRef& jsonObject)
+{
+	setMin(jsonObject.toObject()["min"].toDouble());
+	setMax(jsonObject.toObject()["max"].toDouble());
 }

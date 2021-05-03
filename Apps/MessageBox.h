@@ -29,6 +29,7 @@ public:
 		OK,
 		OK_CANCEL,
 		YES_NO,
+		YES_NO_CANCEL,
 		CUSTOM
 	};
 	Q_ENUM(messageBoxButtonSet)

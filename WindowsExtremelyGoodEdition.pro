@@ -2,7 +2,7 @@ QT       += core gui webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG += c++17 sdk_no_version_check
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -31,6 +31,7 @@ SOURCES += \
     SystemElements/WindowTitleBar.cpp \
     SystemWindow.cpp \
     Util/LineEditList.cpp \
+    Util/PercentageSpinBox.cpp \
     Util/RangedSpinBox.cpp \
     main.cpp \
     ControlWindow.cpp
@@ -59,6 +60,7 @@ HEADERS += \
     SystemElements/WindowTitleBar.h \
     SystemWindow.h \
     Util/LineEditList.h \
+    Util/PercentageSpinBox.h \
     Util/RangedSpinBox.h
 
 FORMS += \

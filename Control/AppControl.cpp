@@ -20,6 +20,11 @@ void AppControl::setupControlWidgets(QTreeWidget* treeWidget, const QString& tit
 	auto activeButton = new QPushButton("Active");
 	activeButton->setCheckable(true);
 
+	QObject::connect(resetButton, &QPushButton::clicked, [=]
+	{
+		resetToDefault();
+	});
+
 	QObject::connect(activeButton, &QPushButton::clicked, [=](bool checked)
 	{
 		_isConfigActive = checked;

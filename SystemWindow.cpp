@@ -30,18 +30,6 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 
 	System::init(_mdiArea, _taskbar);
 
-	auto msgBox = new MessageBox(MessageBox::messageBoxType::INFO, ">:(");
-	System::runApp(msgBox);
-
-	QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]
-	{
-		auto secondMessageBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", ">:(", MessageBox::messageBoxButtonSet::OK);
-		System::runApp(secondMessageBox);
-	});
-
-	auto am = new MessageBox(MessageBox::messageBoxType::WARNING, "Windows", ">:(", MessageBox::messageBoxButtonSet::YES_NO);
-	System::runApp(am);
-
 	auto icon = new DesktopIcon(nullptr, "Something");
 	auto icon2 = new DesktopIcon(nullptr, "Longer title");
 	auto icon3 = new DesktopIcon(nullptr, "Really long title");

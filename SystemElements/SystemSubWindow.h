@@ -28,6 +28,7 @@ public:
 	void enableFrameResize();
 
 	void attachTo(SystemSubWindow* window);
+	void detach();
 
 protected:
 	virtual void focusInEvent(QFocusEvent* focusInEvent) override;
