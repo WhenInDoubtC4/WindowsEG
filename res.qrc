@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>Resources/Style/98.qsst</file>
         <file>Resources/Style/Assets/Arrow-Down-Disabled.png</file>
         <file>Resources/Style/Assets/Arrow-Down.png</file>
         <file>Resources/Style/Assets/Arrow-Up.png</file>

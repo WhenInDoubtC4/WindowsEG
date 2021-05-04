@@ -40,6 +40,7 @@ private:
 
 	int _saveDialogLoopCount = 0;
 	void loopSaveDialog();
+	void showSaveFileSelector();
 
 private slots:
 	void cutText();
@@ -48,6 +49,5 @@ private slots:
 	void deleteSelection();
 
 	void showFirstSaveDialog();
-	void showSaveFileSelector();
 };
 

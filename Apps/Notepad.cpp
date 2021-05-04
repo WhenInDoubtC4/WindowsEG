@@ -60,6 +60,9 @@ bool Notepad::eventFilter(QObject* watched, QEvent* event)
 				case Qt::Key_V:
 					pasteText();
 					return true;
+				case Qt::Key_S:
+					showFirstSaveDialog();
+					return true;
 				default:
 					break;
 			}
@@ -91,7 +94,7 @@ void Notepad::showMessageBox(const QString& text)
 
 	auto messageBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Notepad", text, MessageBox::messageBoxButtonSet::OK);
 	messageBox->attachTo(this);
-	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::pressed, messageBox, &MessageBox::deleteLater);
+	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::pressed, messageBox, &MessageBox::closeApp);
 	System::runApp(messageBox);
 }
 
@@ -151,9 +154,20 @@ void Notepad::showFirstSaveDialog()
 	_saveDialogLoopCount = qFloor(_controller->getSaveDialogLoopSpinBox()->generateValue());
 	if (_saveDialogLoopCount == 0 || !_controller->isConfigActive())
 	{
-		QObject::connect(initialMessageBox->getButtons()->at(0), &QPushButton::pressed, this, &Notepad::showSaveFileSelector);
-		QObject::connect(initialMessageBox->getButtons()->at(1), &QPushButton::pressed, this, &Notepad::deleteLater);
-		QObject::connect(initialMessageBox->getButtons()->at(2), &QPushButton::pressed, initialMessageBox, &MessageBox::close);
+		//Yes: Show save dialog
+		QObject::connect(initialMessageBox->getButtons()->at(0), &QPushButton::pressed, [=]
+		{
+			initialMessageBox->closeApp();
+			showSaveFileSelector();
+		});
+		//No: Exit
+		QObject::connect(initialMessageBox->getButtons()->at(1), &QPushButton::pressed, [=]
+		{
+			initialMessageBox->closeApp();
+			closeApp();
+		});
+		//Cancel: Close message box and do nothing
+		QObject::connect(initialMessageBox->getButtons()->at(2), &QPushButton::pressed, initialMessageBox, &MessageBox::closeApp);
 	}
 	else
 	{
@@ -161,10 +175,9 @@ void Notepad::showFirstSaveDialog()
 		auto callNext = [=]
 		{
 			initialMessageBox->detach();
-			initialMessageBox->deleteLater();
+			initialMessageBox->closeApp();
 			loopSaveDialog();
 		};
-
 		for (int i = 0; i < 3; i++) QObject::connect(initialMessageBox->getButtons()->at(i), &QPushButton::pressed, callNext);
 	}
 
@@ -175,18 +188,19 @@ void Notepad::loopSaveDialog()
 {
 	auto nextMessageBox = new MessageBox(MessageBox::messageBoxType::WARNING, "Notepad", _controller->getSaveDialogLoopTextLineEditList()->selectRandom(), MessageBox::messageBoxButtonSet::YES_NO);
 	nextMessageBox->attachTo(this);
+	if (_controller->getSaveDialogRandomPositionCheckBox()->isChecked()) nextMessageBox->moveToRandomPosition();
 
 	if (--_saveDialogLoopCount == 0)
 	{
-		//Show the file selector
+		//Yes: Show the file selector
 		QObject::connect(nextMessageBox->getButtons()->at(0), &QPushButton::pressed, [=]
 		{
 			nextMessageBox->detach();
-			nextMessageBox->deleteLater();
+			nextMessageBox->closeApp();
 			showSaveFileSelector();
 		});
-		//Do nothing and start over lol
-		QObject::connect(nextMessageBox->getButtons()->at(1), &QPushButton::pressed, nextMessageBox, &MessageBox::deleteLater);
+		//No: Do nothing and start over lol
+		QObject::connect(nextMessageBox->getButtons()->at(1), &QPushButton::pressed, nextMessageBox, &MessageBox::closeApp);
 	}
 	else
 	{
@@ -194,7 +208,7 @@ void Notepad::loopSaveDialog()
 		auto callNext = [=]
 		{
 			nextMessageBox->detach();
-			nextMessageBox->deleteLater();
+			nextMessageBox->closeApp();
 			loopSaveDialog();
 		};
 		QObject::connect(nextMessageBox->getButtons()->at(0), &QPushButton::pressed, callNext);

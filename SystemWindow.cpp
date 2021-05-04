@@ -11,6 +11,7 @@
 
 #include "Apps/Run.h"
 #include "Apps/Notepad.h"
+#include "Apps/FileSelector.h"
 
 SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
   , _ui(new Ui::SystemWindow)
@@ -41,18 +42,14 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 	System::addIconToDesktop(icon4);
 	System::addIconToDesktop(icon5);
 
-	QFile jsonFile = QFile("/Users/adam/Desktop/appSample.json");
-	jsonFile.open(QIODevice::ReadOnly);
-	QJsonDocument json = QJsonDocument::fromJson(jsonFile.readAll());
-	auto app = FakeFileSystem::jsonObjectToApp(json.object());
-
-	if (app) System::runApp(app);
-
 	auto r = new Run();
 	System::runApp(r);
 
 	auto runapp = new Notepad();
 	System::runApp(runapp);
+
+	//auto filedialog = new FileSelector();
+	//System::runApp(filedialog);
 }
 
 SystemWindow::~SystemWindow()

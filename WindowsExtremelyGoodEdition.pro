@@ -10,6 +10,7 @@ CONFIG += c++17 sdk_no_version_check
 
 SOURCES += \
     App.cpp \
+    Apps/FileSelector.cpp \
     Apps/InternetExplorer.cpp \
     Apps/MessageBox.cpp \
     Apps/Notepad.cpp \
@@ -33,11 +34,13 @@ SOURCES += \
     Util/LineEditList.cpp \
     Util/PercentageSpinBox.cpp \
     Util/RangedSpinBox.cpp \
+    Util/TreeComboBox.cpp \
     main.cpp \
     ControlWindow.cpp
 
 HEADERS += \
     App.h \
+    Apps/FileSelector.h \
     Apps/InternetExplorer.h \
     Apps/MessageBox.h \
     Apps/Notepad.h \
@@ -61,9 +64,11 @@ HEADERS += \
     SystemWindow.h \
     Util/LineEditList.h \
     Util/PercentageSpinBox.h \
-    Util/RangedSpinBox.h
+    Util/RangedSpinBox.h \
+    Util/TreeComboBox.h
 
 FORMS += \
+    Apps/FileSelector.ui \
     Apps/InternetExplorer.ui \
     Apps/MessageBox.ui \
     Apps/Notepad.ui \

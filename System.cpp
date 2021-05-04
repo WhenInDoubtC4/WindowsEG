@@ -41,7 +41,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows cannot create a shortcut for this object.", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
-			msgBox->close();
+			msgBox->closeApp();
 			delete msgBox;
 		});
 		runApp(msgBox);
@@ -52,7 +52,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows has encountered an error while trying to delete this object", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
-			msgBox->close();
+			msgBox->closeApp();
 			delete msgBox;
 		});
 		runApp(msgBox);
@@ -68,7 +68,7 @@ void System::addIconToDesktop(DesktopIcon* icon)
 		auto msgBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Windows", "Windows was unable to show properties for this object.", MessageBox::messageBoxButtonSet::OK);
 		QObject::connect(msgBox->getButtons()->at(0), &QPushButton::pressed, [=]()
 		{
-			msgBox->close();
+			msgBox->closeApp();
 			delete msgBox;
 		});
 		runApp(msgBox);

@@ -6,14 +6,12 @@ SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet) : QMdiSubWin
 	, _uiContainer(new QWidget(this))
 	, _titleBar(new WindowTitleBar(this, this, buttonSet))
 {
-	setAttribute(Qt::WA_DeleteOnClose);
+	//setAttribute(Qt::WA_DeleteOnClose);
 	layout()->addWidget(_uiContainer);
 
 	_ui->setupUi(_uiContainer);
 	_ui->windowFrame->setProperty("outset", true);
 	_ui->titlebarPlaceholder->addWidget(_titleBar);
-
-	QObject::connect(_titleBar, &WindowTitleBar::requestClose, this, &SystemSubWindow::onCloseRequested);
 }
 
 SystemSubWindow::~SystemSubWindow()
@@ -22,11 +20,6 @@ SystemSubWindow::~SystemSubWindow()
 	delete _titleBar;
 	delete _uiContainer;
 	delete _ui;
-}
-
-void SystemSubWindow::onCloseRequested()
-{
-	deleteLater();
 }
 
 QWidget* SystemSubWindow::getContentPlaceholder() const
@@ -146,8 +139,24 @@ void SystemSubWindow::detach()
 	_attachedWindow = nullptr;
 }
 
+void SystemSubWindow::moveToRandomPosition()
+{
+	_moveToRandomPositionOnShow = true;
+}
+
 void SystemSubWindow::showEvent(QShowEvent* showEvent)
 {
+	if (_moveToRandomPositionOnShow)
+	{
+		QSize availableSpace = mdiArea()->size() - size();
+		int xPos = QRandomGenerator::global()->bounded(availableSpace.width());
+		int yPos = QRandomGenerator::global()->bounded(availableSpace.height());
+		move(xPos, yPos);
+
+		QMdiSubWindow::showEvent(showEvent);
+		return;
+	}
+
 	if (_attachedWindow) move(_attachedWindow->geometry().center() - QRect(QPoint(0, 0), size()).center());
 
 	QMdiSubWindow::showEvent(showEvent);

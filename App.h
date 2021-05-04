@@ -12,7 +12,8 @@ public:
 
 	TaskbarElement* createTaskbarElement();
 
-	void close();
+public slots:
+	void closeApp();
 
 protected:
 	QString taskbarTitle;

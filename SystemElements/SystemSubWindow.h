@@ -6,6 +6,8 @@
 #include <QMenu>
 #include <QGridLayout>
 #include <QSizeGrip>
+#include <QMdiArea>
+#include <QRandomGenerator>
 
 #include "WindowTitleBar.h"
 
@@ -30,6 +32,8 @@ public:
 	void attachTo(SystemSubWindow* window);
 	void detach();
 
+	void moveToRandomPosition();
+
 protected:
 	virtual void focusInEvent(QFocusEvent* focusInEvent) override;
 	virtual void focusOutEvent(QFocusEvent* focusOutEvent) override;
@@ -50,9 +54,7 @@ private:
 	QList<QSizeGrip*> _resizeGrips;
 
 	SystemSubWindow* _attachedWindow = nullptr;
-
-private slots:
-	virtual void onCloseRequested();
+	bool _moveToRandomPositionOnShow = false;
 
 signals:
 	void focusChanged(bool focused);

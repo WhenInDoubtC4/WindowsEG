@@ -24,6 +24,7 @@
 #define MISSING_CHAR_CHANCE "missingCharChance"
 #define SAVE_DIALOG_LOOP_TEXT "saveDialogLoopText"
 #define SAVE_DIALOG_LOOP_COUNT "saveDialogLoopCount"
+#define SAVE_DIALOG_RANDOM_POSITION "saveDialogRandomPosition"
 
 class NotepadControl : public AppControl
 {
@@ -54,6 +55,8 @@ public:
 	LineEditList* getSaveDialogLoopTextLineEditList(){ return _saveDialogLoopTextLineEditList; };
 	RangedSpinBox* getSaveDialogLoopSpinBox(){ return _saveDialogLoopSpinBox; };
 
+	QCheckBox* getSaveDialogRandomPositionCheckBox(){ return _saveDialogRandomPositionCheckBox; };
+
 protected:
 	virtual void setSaveData(QJsonObject& data) override;
 	virtual void load(QJsonObject& data) override;
@@ -62,6 +65,7 @@ protected:
 private:
 	APP_CONTROL
 	NotepadControl();
+	~NotepadControl();
 
 	QComboBox* _clipboardModeComboBox = nullptr;
 
@@ -80,6 +84,8 @@ private:
 
 	LineEditList* _saveDialogLoopTextLineEditList = nullptr;
 	RangedSpinBox* _saveDialogLoopSpinBox = nullptr;
+
+	QCheckBox* _saveDialogRandomPositionCheckBox = nullptr;
 
 	const QList<QString> _defaultCutErrorMessages = QList<QString>
 	{
@@ -110,6 +116,10 @@ private:
 	{
 		"Are you sure?",
 		"Are you absolutely certain?",
-		"Have you double checked?"
+		"Have you double checked?",
+		"Proceed?",
+		"Is this the button you wanted to press?",
+		"Have you checked for typos before saving?",
+		"Confirm?"
 	};
 };

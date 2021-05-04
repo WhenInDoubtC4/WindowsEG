@@ -27,6 +27,8 @@ NotepadControl::NotepadControl() : AppControl()
 	_saveDialogLoopSpinBox = new RangedSpinBox(0., 100., 1., 5., 1.);
 	//NOTE: Disguise as int spin box
 	_saveDialogLoopSpinBox->setPrecision(0);
+	_saveDialogRandomPositionCheckBox = new QCheckBox();
+	_saveDialogRandomPositionCheckBox->setChecked(true);
 
 	getControlItemsList()
 			<< row{new QLabel("Clipboard mode"), _clipboardModeComboBox}
@@ -41,7 +43,30 @@ NotepadControl::NotepadControl() : AppControl()
 			<< row{new QLabel("Duplicate character chance"), _duplicateCharChanceSpinBox}
 			<< row{new QLabel("Missing character chance"), _missingCharChanceSpinBox}
 			<< row{new QLabel("Save dialog text"), _saveDialogLoopTextLineEditList}
-			<< row{new QLabel("Save dialog loop count"), _saveDialogLoopSpinBox};
+			<< row{new QLabel("Save dialog loop count"), _saveDialogLoopSpinBox}
+			<< row{new QLabel("Save dialog random position"), _saveDialogRandomPositionCheckBox};
+}
+
+NotepadControl::~NotepadControl()
+{
+	delete _clipboardModeComboBox;
+
+	delete _cutErrorMessagesLineEditList;
+	delete _copyErrorMessagesLineEditList;
+	delete _pasteErrorMessagesLineEditList;
+	delete _cutErrorMessageChanceSpinBox;
+	delete _copyErrorMessageChanceSpinBox;
+	delete _pasteErrorMessageChanceSpinBox;
+
+	delete _pasteTextFracionSpinBox;
+
+	delete _brokenKeyboardCheckBox;
+	delete _duplicateCharChanceSpinBox;
+	delete _missingCharChanceSpinBox;
+
+	delete _saveDialogLoopTextLineEditList;
+	delete _saveDialogLoopSpinBox;
+	delete _saveDialogRandomPositionCheckBox;
 }
 
 void NotepadControl::setSaveData(QJsonObject& data)
@@ -64,6 +89,7 @@ void NotepadControl::setSaveData(QJsonObject& data)
 
 	rootObject[SAVE_DIALOG_LOOP_TEXT] = QJsonArray::fromStringList(_saveDialogLoopTextLineEditList->getTextInAllFields());
 	rootObject[SAVE_DIALOG_LOOP_COUNT] = _saveDialogLoopSpinBox->getJsonObject();
+	rootObject[SAVE_DIALOG_RANDOM_POSITION] = _saveDialogRandomPositionCheckBox->isChecked();
 
 	data[ROOT_NAME] = rootObject;
 }
@@ -95,6 +121,7 @@ void NotepadControl::load(QJsonObject& data)
 
 	_saveDialogLoopTextLineEditList->addFromStringList(jsonToStringList(rootObject[SAVE_DIALOG_LOOP_TEXT]));
 	_saveDialogLoopSpinBox->loadFromJson(rootObject[SAVE_DIALOG_LOOP_COUNT]);
+	_saveDialogRandomPositionCheckBox->setChecked(rootObject[SAVE_DIALOG_RANDOM_POSITION].toBool());
 }
 
 void NotepadControl::resetToDefault()
@@ -123,6 +150,7 @@ void NotepadControl::resetToDefault()
 
 	_saveDialogLoopSpinBox->setMin(0.);
 	_saveDialogLoopSpinBox->setMax(5.);
+	_saveDialogRandomPositionCheckBox->setChecked(true);
 }
 
 NotepadControl::clipboardMode NotepadControl::getClipboardMode()

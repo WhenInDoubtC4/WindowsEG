@@ -9,7 +9,7 @@ App::App(WindowTitleBar::buttons defaultButtonSet) : SystemSubWindow(defaultButt
 		_taskbarElement->setChecked(isFocused);
 	});
 
-	QObject::connect(getTitleBar(), &WindowTitleBar::requestClose, this, &App::close);
+	QObject::connect(getTitleBar(), &WindowTitleBar::requestClose, this, &App::closeApp);
 }
 
 TaskbarElement* App::createTaskbarElement()
@@ -21,10 +21,10 @@ TaskbarElement* App::createTaskbarElement()
 	return _taskbarElement;
 }
 
-void App::close()
+void App::closeApp()
 {
 	_taskbarElement->deleteLater();
-	deleteLater();
+	delete this;
 }
 
 void App::onTaskbarElementPressed()
