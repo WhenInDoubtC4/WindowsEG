@@ -3,19 +3,17 @@
 #include <QObject>
 #include <QWidget>
 #include <QComboBox>
-#include <QTreeView>
-#include <QFileSystemModel>
+#include <QTreeWidget>
+
+#include "SystemElements/ListIcon.h"
 
 class TreeComboBox : public QComboBox
 {
 	Q_OBJECT
 public:
 	TreeComboBox(QWidget* parent = nullptr);
-
-protected:
-	virtual void showEvent(QShowEvent *e) override;
+	~TreeComboBox();
 
 private:
-	QFileSystemModel* model = nullptr;
-	QTreeView* tw = nullptr;
+	QTreeWidget* _treeWidget = nullptr;
 };

@@ -3,25 +3,21 @@
 #include <QDebug>
 
 TreeComboBox::TreeComboBox(QWidget* parent) : QComboBox(parent)
+  , _treeWidget(new QTreeWidget())
 {
-	tw = new QTreeView(this);
-	model = new QFileSystemModel();
-	tw->setHeaderHidden(true);
+	setView(_treeWidget);
+	setModel(_treeWidget->model());
+	_treeWidget->setHeaderHidden(true);
 
-	model->setRootPath("/");
-	model->setFilter(QDir::AllDirs);
-
-	setView(tw);
-	setModel(model);
+	auto i1 = new QTreeWidgetItem();
+	auto iw = new ListIcon(QPixmap(":/Resources/Style/Assets/Icons/Warning.ico"), "AAAA");
 
 
-	for (int i = 1; i < 4; i++) tw->hideColumn(i);
-	tw->setRootIsDecorated(false);
+	_treeWidget->addTopLevelItem(i1);
+	_treeWidget->setItemWidget(i1, 0, iw);
 }
 
-void TreeComboBox::showEvent(QShowEvent *e)
+TreeComboBox::~TreeComboBox()
 {
-	QComboBox::showEvent(e);
-
-	tw->expandAll();
+	delete _treeWidget;
 }

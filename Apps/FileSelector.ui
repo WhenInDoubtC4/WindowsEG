@@ -25,9 +25,6 @@
      </item>
      <item>
       <widget class="TreeComboBox" name="pathComboBox">
-       <property name="editable">
-        <bool>true</bool>
-       </property>
        <property name="frame">
         <bool>false</bool>
        </property>
@@ -36,7 +33,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="treeView"/>
+    <widget class="FileExplorerTable" name="tableWidget"/>
    </item>
    <item>
     <layout class="QGridLayout" name="bottomGridLayout">
@@ -86,6 +83,11 @@
    <class>TreeComboBox</class>
    <extends>QComboBox</extends>
    <header>Util/TreeComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>FileExplorerTable</class>
+   <extends>QTableWidget</extends>
+   <header>FileSystem/FileExplorerTable.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

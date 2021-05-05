@@ -6,14 +6,7 @@ FileSelector::FileSelector() : App(WindowTitleBar::buttons::CLOSE_ONLY)
 {
 	_ui->setupUi(getContentPlaceholder());
 
-//	model.setRootPath("");
-//	model.setFilter(QDir::AllDirs);
-
-//	_ui->treeView->setStyleSheet("");
-
-//	_ui->treeView->setModel(&model);
-//	_ui->treeView->setRootIndex(model.index(QDir::cleanPath("")));
-//	_ui->treeView->show();
+	_ui->tableWidget->setRoot("/Users/adam/Desktop/Dev/qt_windowsExtremelyGoodEdition/FakeFileSystemRoot/_rootDrive", QDir::AllEntries);
 }
 
 FileSelector::~FileSelector()

@@ -19,10 +19,12 @@ SOURCES += \
     Control/InternetExplorerControl.cpp \
     Control/NotepadControl.cpp \
     FileSystem/FakeFileSystem.cpp \
+    FileSystem/FileExplorerTable.cpp \
     System.cpp \
     SystemElements/Desktop.cpp \
     SystemElements/DesktopIcon.cpp \
     SystemElements/DesktopIconTextEdit.cpp \
+    SystemElements/ListIcon.cpp \
     SystemElements/StartMenu.cpp \
     SystemElements/StartMenuItem.cpp \
     SystemElements/SystemMdiArea.cpp \
@@ -50,10 +52,12 @@ HEADERS += \
     Control/NotepadControl.h \
     ControlWindow.h \
     FileSystem/FakeFileSystem.h \
+    FileSystem/FileExplorerTable.h \
     System.h \
     SystemElements/Desktop.h \
     SystemElements/DesktopIcon.h \
     SystemElements/DesktopIconTextEdit.h \
+    SystemElements/ListIcon.h \
     SystemElements/StartMenu.h \
     SystemElements/StartMenuItem.h \
     SystemElements/SystemMdiArea.h \
@@ -75,6 +79,7 @@ FORMS += \
     Apps/Run.ui \
     ControlWindow.ui \
     SystemElements/DesktopIcon.ui \
+    SystemElements/ListIcon.ui \
     SystemElements/SystemMdiArea.ui \
     SystemElements/SystemSubWindow.ui \
     SystemElements/SystemTaskbar.ui \

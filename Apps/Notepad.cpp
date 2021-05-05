@@ -94,7 +94,7 @@ void Notepad::showMessageBox(const QString& text)
 
 	auto messageBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Notepad", text, MessageBox::messageBoxButtonSet::OK);
 	messageBox->attachTo(this);
-	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::pressed, messageBox, &MessageBox::closeApp);
+	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::released, messageBox, &MessageBox::closeApp);
 	System::runApp(messageBox);
 }
 
