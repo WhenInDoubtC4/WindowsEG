@@ -94,7 +94,11 @@ void Notepad::showMessageBox(const QString& text)
 
 	auto messageBox = new MessageBox(MessageBox::messageBoxType::ERROR, "Notepad", text, MessageBox::messageBoxButtonSet::OK);
 	messageBox->attachTo(this);
-	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::released, messageBox, &MessageBox::closeApp);
+	QObject::connect(messageBox->getButtons()->at(0), &QPushButton::released, [=]
+	{
+		messageBox->detach();
+		messageBox->closeApp();
+	});
 	System::runApp(messageBox);
 }
 
@@ -157,12 +161,14 @@ void Notepad::showFirstSaveDialog()
 		//Yes: Show save dialog
 		QObject::connect(initialMessageBox->getButtons()->at(0), &QPushButton::pressed, [=]
 		{
+			initialMessageBox->detach();
 			initialMessageBox->closeApp();
 			showSaveFileSelector();
 		});
 		//No: Exit
 		QObject::connect(initialMessageBox->getButtons()->at(1), &QPushButton::pressed, [=]
 		{
+			initialMessageBox->detach();
 			initialMessageBox->closeApp();
 			closeApp();
 		});

@@ -31,6 +31,7 @@ public:
 	void setTitle(const QString& title);
 
 	void setFocused(const bool focused);
+	bool isFocused(){ return _isFocused; };
 
 protected:
 	virtual void paintEvent(QPaintEvent* event) override;

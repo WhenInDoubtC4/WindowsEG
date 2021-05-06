@@ -1,7 +1,5 @@
 #include "App.h"
 
-#include <QDebug>
-
 App::App(WindowTitleBar::buttons defaultButtonSet) : SystemSubWindow(defaultButtonSet)
 {
 	QObject::connect(this, &App::focusChanged, [=](bool isFocused)
@@ -10,6 +8,11 @@ App::App(WindowTitleBar::buttons defaultButtonSet) : SystemSubWindow(defaultButt
 	});
 
 	QObject::connect(getTitleBar(), &WindowTitleBar::requestClose, this, &App::closeApp);
+}
+
+App::~App()
+{
+	delete _taskbarElement;
 }
 
 TaskbarElement* App::createTaskbarElement()
@@ -23,7 +26,6 @@ TaskbarElement* App::createTaskbarElement()
 
 void App::closeApp()
 {
-	_taskbarElement->deleteLater();
 	delete this;
 }
 

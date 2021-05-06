@@ -6,7 +6,8 @@ SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet) : QMdiSubWin
 	, _uiContainer(new QWidget(this))
 	, _titleBar(new WindowTitleBar(this, this, buttonSet))
 {
-	//setAttribute(Qt::WA_DeleteOnClose);
+	setAttribute(Qt::WA_DeleteOnClose);
+
 	layout()->addWidget(_uiContainer);
 
 	_ui->setupUi(_uiContainer);
@@ -17,6 +18,7 @@ SystemSubWindow::SystemSubWindow(WindowTitleBar::buttons buttonSet) : QMdiSubWin
 SystemSubWindow::~SystemSubWindow()
 {
 	while(!_resizeGrips.isEmpty()) delete _resizeGrips.takeLast();
+	delete _resizeGripLayout;
 	delete _titleBar;
 	delete _uiContainer;
 	delete _ui;
@@ -32,23 +34,31 @@ WindowTitleBar* SystemSubWindow::getTitleBar() const
 	return _titleBar;
 }
 
+void SystemSubWindow::setupFocusHandling()
+{
+	for (auto childWidget : findChildren<QWidget*>())
+	{
+		childWidget->installEventFilter(this);
+	}
+
+	//Menus
+	for (auto childMenu : findChildren<QMenu*>())
+	{
+		QObject::connect(childMenu, &QMenu::aboutToShow, [=]()
+		{
+			_ignoreUnfocusOnce = true;
+		});
+	}
+}
+
 void SystemSubWindow::focusInEvent(QFocusEvent* focusInEvent)
 {
 	QMdiSubWindow::focusInEvent(focusInEvent);
 
-	if (!_isFocusSetUp)
+	if (Q_UNLIKELY(!_isFocusSetUp))
 	{
 		_isFocusSetUp = true;
-		for (auto childWidget : findChildren<QWidget*>()) childWidget->installEventFilter(this);
-
-		//Menus
-		for (auto childMenu : findChildren<QMenu*>())
-		{
-			QObject::connect(childMenu, &QMenu::aboutToShow, [=]()
-			{
-				_ignoreUnfocusOnce = true;
-			});
-		}
+		setupFocusHandling();
 	}
 
 	_titleBar->setFocused(true);
@@ -70,11 +80,12 @@ void SystemSubWindow::focusOutEvent(QFocusEvent* focusOutEvent)
 }
 
 bool SystemSubWindow::eventFilter([[maybe_unused]] QObject* watched, QEvent* event)
-{
+{	
 	if (event->type() == QEvent::FocusIn)
 	{	
 		_titleBar->setFocused(true);
 		emit focusChanged(true);
+		return false;
 	}
 
 	if (event->type() == QEvent::FocusOut)
@@ -84,6 +95,10 @@ bool SystemSubWindow::eventFilter([[maybe_unused]] QObject* watched, QEvent* eve
 			_ignoreUnfocusOnce = false;
 			return false;
 		}
+
+		//No idea why this is necessary. Took 2 hours of debugging
+		auto focusEvent = dynamic_cast<QFocusEvent*>(event);
+		if (focusEvent->reason() == Qt::OtherFocusReason) return false;
 
 		_titleBar->setFocused(false);
 		emit focusChanged(false);
@@ -121,7 +136,7 @@ void SystemSubWindow::attachTo(SystemSubWindow* window)
 {
 	if (_attachedWindow) throw std::runtime_error("Already attached to a different window");
 
-	QObject::connect(this, &QMdiSubWindow::destroyed, [=]()
+	QObject::connect(_attachedWindow, &QMdiSubWindow::destroyed, [=]
 	{
 		detach();
 	});

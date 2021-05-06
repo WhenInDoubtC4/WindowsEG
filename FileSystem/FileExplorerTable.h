@@ -18,7 +18,9 @@ public:
 
 	void setRoot(const QString& path, QDir::Filter filter = QDir::Filter());
 
+public slots:
 	void cdUp();
+	void cd(const QString& path);
 
 protected:
 	virtual void resizeEvent(QResizeEvent* event) override;
@@ -32,5 +34,8 @@ private:
 	const int cellHeight = 20;
 
 	void layout();
+
+signals:
+	void dirChanged();
 };
 

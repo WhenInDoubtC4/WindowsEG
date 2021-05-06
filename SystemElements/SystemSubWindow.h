@@ -34,6 +34,9 @@ public:
 
 	void moveToRandomPosition();
 
+public slots:
+	void setupFocusHandling();
+
 protected:
 	virtual void focusInEvent(QFocusEvent* focusInEvent) override;
 	virtual void focusOutEvent(QFocusEvent* focusOutEvent) override;

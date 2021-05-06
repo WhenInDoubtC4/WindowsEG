@@ -9,6 +9,7 @@ class App : public SystemSubWindow
 {
 public:
 	App(WindowTitleBar::buttons defaultButtonSet = WindowTitleBar::buttons::NORMAL);
+	~App();
 
 	TaskbarElement* createTaskbarElement();
 

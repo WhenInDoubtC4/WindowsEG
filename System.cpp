@@ -23,11 +23,6 @@ void System::runApp(App* app)
 		app->setFocus();
 	});
 
-	QObject::connect(app, &App::destroyed, [=]
-	{
-		appTaskbarElement->deleteLater();
-	});
-
 	app->show();
 }
 

@@ -18,6 +18,12 @@
     <layout class="QHBoxLayout" name="pathLayout">
      <item>
       <widget class="QLabel" name="saveInLabel">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
         <string>Save in:</string>
        </property>
@@ -25,8 +31,24 @@
      </item>
      <item>
       <widget class="TreeComboBox" name="pathComboBox">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
        <property name="frame">
         <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cdUpButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>CdUp</string>
        </property>
       </widget>
      </item>

@@ -1,8 +1,6 @@
 #include "ListIcon.h"
 #include "ui_ListIcon.h"
 
-#include <QDebug>
-
 ListIcon::ListIcon(const QPixmap& icon, const QString& title, QWidget* parent) : QWidget(parent)
   , _ui(new Ui::ListIcon)
 {
@@ -10,8 +8,6 @@ ListIcon::ListIcon(const QPixmap& icon, const QString& title, QWidget* parent) :
 
 	_ui->iconLabel->setPixmap(icon);
 	_ui->titleLabel->setText(title);
-
-	setFocusPolicy(Qt::ClickFocus);
 }
 
 ListIcon::~ListIcon()
@@ -19,11 +15,11 @@ ListIcon::~ListIcon()
 	delete _ui;
 }
 
-void ListIcon::showEvent(QShowEvent* event)
+void ListIcon::setAsComboBoxElement()
 {
-	QWidget::showEvent(event);
+	_comboBoxElement = true;
 
-	qDebug() << _correspondingPath << "SHOW";
+	setAttribute(Qt::WA_TransparentForMouseEvents);
 }
 
 void ListIcon::mouseDoubleClickEvent(QMouseEvent* event)
@@ -32,28 +28,25 @@ void ListIcon::mouseDoubleClickEvent(QMouseEvent* event)
 
 	emit opened();
 }
+
+void ListIcon::mousePressEvent(QMouseEvent* event)
+{
+	QWidget::mousePressEvent(event);
+
+	if (_comboBoxElement) return;
+
+	setFocus();
+	setSelected(true);
+
+	emit selected();
+}
+
 void ListIcon::focusOutEvent(QFocusEvent* event)
 {
 	QWidget::focusOutEvent(event);
 
+	if (_comboBoxElement) return;
 	setSelected(false);
-
-	qDebug() << _correspondingPath << "Focus out" << event->reason();
-}
-
-void ListIcon::focusInEvent(QFocusEvent* event)
-{
-	if (event->reason() != Qt::MouseFocusReason)
-	{
-		qDebug() << "Ignore this";
-		event->ignore();
-		return;
-	}
-
-	setSelected(true);
-
-	//QWidget::focusInEvent(event);
-	qDebug() << _correspondingPath << "Focus in" << event->reason();
 }
 
 void ListIcon::setSelected(bool selected)

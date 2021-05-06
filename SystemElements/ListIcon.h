@@ -2,7 +2,6 @@
 
 #include <QObject>
 #include <QWidget>
-#include <QFocusEvent>
 
 namespace Ui
 {
@@ -20,12 +19,12 @@ public:
 	QString getCorrespondingPath() const{ return _correspondingPath; };
 
 	void setSelected(bool selected);
+	void setAsComboBoxElement();
 
 protected:
 	virtual void mouseDoubleClickEvent(QMouseEvent* event) override;
+	virtual void mousePressEvent(QMouseEvent* event) override;
 	virtual void focusOutEvent(QFocusEvent* event) override;
-	virtual void focusInEvent(QFocusEvent* event) override;
-	virtual void showEvent(QShowEvent* event) override;
 
 private:
 	Ui::ListIcon* _ui = nullptr;
@@ -33,7 +32,10 @@ private:
 	bool _ignoreFocusOnce = false;
 	QString _correspondingPath;
 
+	bool _comboBoxElement = false;
+
 signals:
 	void opened();
+	void selected();
 };
 

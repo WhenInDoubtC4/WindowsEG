@@ -48,8 +48,8 @@ SystemWindow::SystemWindow(QWidget* parent) :QMainWindow(parent)
 	auto runapp = new Notepad();
 	System::runApp(runapp);
 
-	//auto filedialog = new FileSelector();
-	//System::runApp(filedialog);
+//	auto filedialog = new FileSelector();
+//	System::runApp(filedialog);
 }
 
 SystemWindow::~SystemWindow()

@@ -4,20 +4,63 @@
 
 TreeComboBox::TreeComboBox(QWidget* parent) : QComboBox(parent)
   , _treeWidget(new QTreeWidget())
+  , _fileSystem(new QDir())
 {
 	setView(_treeWidget);
 	setModel(_treeWidget->model());
 	_treeWidget->setHeaderHidden(true);
 
-	auto i1 = new QTreeWidgetItem();
-	auto iw = new ListIcon(QPixmap(":/Resources/Style/Assets/Icons/Warning.ico"), "AAAA");
+	_fileSystem->setPath("/Users/adam/Desktop/Dev/qt_windowsExtremelyGoodEdition/FakeFileSystemRoot/_rootDrive");
 
+	//Add top level items
+	QList<QFileInfo> topLevelEntries = _fileSystem->entryInfoList();
+	for (QFileInfo entry : qAsConst(topLevelEntries))
+	{
+		if (!entry.isDir() || entry.baseName() == QString()) continue;
 
-	_treeWidget->addTopLevelItem(i1);
-	_treeWidget->setItemWidget(i1, 0, iw);
+		auto icon = new ListIcon(QPixmap(":/Resources/Style/Assets/Icons/Warning.ico"), entry.baseName(), this);
+		icon->setCorrespondingPath(_fileSystem->path() + "/" + entry.baseName());
+		icon->setAsComboBoxElement();
+		auto item = new QTreeWidgetItem();
+		_treeWidget->addTopLevelItem(item);
+		_treeWidget->setItemWidget(item, 0, icon);
+		item->setExpanded(true);
+
+		addChildren(item);
+	}
 }
 
 TreeComboBox::~TreeComboBox()
 {
+	delete _fileSystem;
 	delete _treeWidget;
+}
+
+void TreeComboBox::paintEvent(QPaintEvent* e)
+{
+	QComboBox::paintEvent(e);
+
+	QPainter painter(this);
+}
+
+void TreeComboBox::addChildren(QTreeWidgetItem* topLevelItem)
+{
+	ListIcon* rootIcon = dynamic_cast<ListIcon*>(_treeWidget->itemWidget(topLevelItem, 0));
+	QDir root(rootIcon->getCorrespondingPath());
+
+	for (QFileInfo& entry : root.entryInfoList(QDir::Dirs))
+	{
+		if (entry.baseName() == QString()) continue;
+
+		auto icon = new ListIcon(QPixmap(":/Resources/Style/Assets/Icons/Warning.ico"), entry.baseName(), this);
+		icon->setCorrespondingPath(root.path() + "/" + entry.baseName());
+		icon->setAsComboBoxElement();
+		auto item = new QTreeWidgetItem(topLevelItem);
+		_treeWidget->setItemWidget(item, 0, icon);
+		item->setExpanded(true);
+
+		//Check if it has any subdirs
+		QDir subDir(root.path() + "/" + entry.baseName());
+		if (subDir.entryList(QDir::Dirs).size() > 0) addChildren(item);
+	}
 }

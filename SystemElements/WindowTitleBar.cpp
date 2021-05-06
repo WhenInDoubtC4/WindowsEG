@@ -1,8 +1,6 @@
 #include "WindowTitleBar.h"
 #include "ui_WindowTitleBar.h"
 
-#include <QDebug>
-
 WindowTitleBar::WindowTitleBar(QWidget* parent, QMdiSubWindow* parentWindow, buttons buttonSet) : QWidget(parent)
   , _ui(new Ui::WindowTitleBar)
   , _window(parentWindow)
@@ -38,8 +36,6 @@ WindowTitleBar::WindowTitleBar(QWidget* parent, QMdiSubWindow* parentWindow, but
 			break;
 		}
 	}
-
-	show();
 }
 
 WindowTitleBar::~WindowTitleBar()
@@ -53,15 +49,13 @@ void WindowTitleBar::paintEvent(QPaintEvent* event)
 {
 	QWidget::paintEvent(event);
 
-	auto painter = new QPainter(this);
+	QPainter painter(this);
 
 	QColor backgroundColor = QColor(128, 128, 128);
 	if (_isFocused) backgroundColor = QColor(0, 0, 128);
 
-	painter->setPen(Qt::blue);
-	painter->fillRect(0, 0, width(), height(), QBrush(backgroundColor));
-
-	delete painter;
+	painter.setPen(Qt::blue);
+	painter.fillRect(0, 0, width(), height(), QBrush(backgroundColor));
 }
 
 void WindowTitleBar::mousePressEvent(QMouseEvent* event)
@@ -127,5 +121,5 @@ void WindowTitleBar::setTitle(const QString& title)
 void WindowTitleBar::setFocused(const bool focused)
 {
 	_isFocused = focused;
-	repaint();
+	update();
 }
