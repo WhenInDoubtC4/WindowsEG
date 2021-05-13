@@ -37,7 +37,7 @@ public:
 	MessageBox(messageBoxType type = messageBoxType::INFO, const QString& title = "", const QString& text = ">:(", messageBoxButtonSet buttonSet = messageBoxButtonSet::OK_CANCEL);
 	~MessageBox();
 
-	QList<QPushButton*>* getButtons();
+	QList<QPushButton*>& getButtons();
 
 private:
 	Ui::MessageBox* _ui = nullptr;

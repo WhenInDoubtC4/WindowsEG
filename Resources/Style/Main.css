@@ -138,91 +138,9 @@ QSlider::handle:vertical
 }
 
 /* --------------------------------------------------------------------
-	Combo box
-	-------------------------------------------------------------------- */
-/*QComboBox
-{
-	background-color: #c0c0c0;
-}*/
-
-QComboBox:editable
-{
-	color: #000000;
-	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
-	border: 2px solid #000000;
-	border-radius: 0px;
-}
-
-QComboBox::drop-down
-{
-	border-width: 3px;
-	border-image: url(":/Resources/Style/Assets/Box.png") 3 3 3 3;
-	color: #000000;
-	background-color: transparent;
-	/*padding: 1px;
-	padding-left: 4px;
-	margin-top: 2px;
-	margin-bottom: 2px;
-	margin-left: 2px;
-	margin-right: 2px;
-	min-width: 16px;
-	min-height: 15px;*/
-}
-
-QComboBox::drop-down:pressed
-{
-	border-image: url(":/Resources/Style/Assets/Button-Pressed.png") 3 3 3 3;
-}
-
-QComboBox::down-arrow
-{
-	margin-bottom: -1px;
-	min-width: 16px;
-	min-height: 16px;
-	image: url(":/Resources/Style/Assets/Arrow-Down.png");
-}
-
-QComboBox::down-arrow:disabled
-{
-	image: url(":/Resources/Style/Assets/Arrow-Down-Disabled.png");
-}
-
-/* --------------------------------------------------------------------
-	Spin box
-	-------------------------------------------------------------------- */
-	
-QSpinBox, QAbstractSpinBox
-{
-	border: 2px solid #000000;
-	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
-	border-radius: 0px;
-}
-
-QSpinBox::up-button, QSpinBox::down-button, QAbstractSpinBox::up-button, QAbstractSpinBox::down-button
-{
-	border: 3px solid #000000;
-	border-image: url(":/Resources/Style/Assets/Dialog-Button.png") 3 3 3 3;
-}
-
-QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QAbstractSpinBox::up-button:pressed, QAbstractSpinBox::down-button:pressed
-{
-	border-image: url(":/Resources/Style/Assets/Button-Pressed.png");
-}
-
-QSpinBox::down-arrow, QAbstractSpinBox::down-arrow
-{
-	image: url(":/Resources/Style/Assets/Arrow-Down.png");
-}
-
-QSpinBox::up-arrow, QAbstractSpinBox::up-arrow
-{
-	image: url(":/Resources/Style/Assets/Arrow-Up.png");
-}
-
-/* --------------------------------------------------------------------
 	Menu
 	-------------------------------------------------------------------- */
-	
+
 QMenu, QListView, QComboBox QAbstractItemView
 {
 	padding: 0px;
@@ -309,6 +227,77 @@ QMenu[startMenu = "true"]
 	color: #000000;
 	selection-background-color: #000080;
 	border-image: none;
+}
+
+/* --------------------------------------------------------------------
+	Combo box
+	-------------------------------------------------------------------- */
+
+QComboBox
+{
+	color: #000000;
+	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
+	border: 2px solid #000000;
+	border-radius: 0px;
+	background-image: none;
+}
+
+QComboBox::drop-down
+{
+	border-width: 3px;
+	border-image: url(":/Resources/Style/Assets/Box.png") 3 3 3 3;
+	color: #000000;
+	background-color: transparent;
+}
+
+QComboBox::drop-down:pressed
+{
+	border-image: url(":/Resources/Style/Assets/Button-Pressed.png") 3 3 3 3;
+}
+
+QComboBox::down-arrow
+{
+	margin-bottom: -1px;
+	min-width: 16px;
+	min-height: 16px;
+	image: url(":/Resources/Style/Assets/Arrow-Down.png");
+}
+
+QComboBox::down-arrow:disabled
+{
+	image: url(":/Resources/Style/Assets/Arrow-Down-Disabled.png");
+}
+
+/* --------------------------------------------------------------------
+	Spin box
+	-------------------------------------------------------------------- */
+	
+QSpinBox, QAbstractSpinBox
+{
+	border: 2px solid #000000;
+	border-image: url(":/Resources/Style/Assets/TextField.png") 2 2 2 2;
+	border-radius: 0px;
+}
+
+QSpinBox::up-button, QSpinBox::down-button, QAbstractSpinBox::up-button, QAbstractSpinBox::down-button
+{
+	border: 3px solid #000000;
+	border-image: url(":/Resources/Style/Assets/Dialog-Button.png") 3 3 3 3;
+}
+
+QSpinBox::up-button:pressed, QSpinBox::down-button:pressed, QAbstractSpinBox::up-button:pressed, QAbstractSpinBox::down-button:pressed
+{
+	border-image: url(":/Resources/Style/Assets/Button-Pressed.png");
+}
+
+QSpinBox::down-arrow, QAbstractSpinBox::down-arrow
+{
+	image: url(":/Resources/Style/Assets/Arrow-Down.png");
+}
+
+QSpinBox::up-arrow, QAbstractSpinBox::up-arrow
+{
+	image: url(":/Resources/Style/Assets/Arrow-Up.png");
 }
 
 /* --------------------------------------------------------------------

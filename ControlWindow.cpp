@@ -2,19 +2,21 @@
 #include "ui_ControlWindow.h"
 
 ControlWindow::ControlWindow(QWidget* parent): QMainWindow(parent)
+  , _ui(new Ui::ControlWindow)
 {
-	//Make sure controls are registered befor anything else is created
+	//Make sure controls are registered before anything else is created
+	_globalControl = AppControl::registerControlClass<GlobalControl>();
 	AppControl::registerControlClass<NotepadControl>();
 	AppControl::registerControlClass<InternetExplorerControl>();
 
-	_ui = new Ui::ControlWindow;
-	_systemWindow = new SystemWindow();
 	_ui->setupUi(this);
+	_globalControl->setTextAACheckBox(_ui->textAACheckBox);
 
 	AppControl::getInstance<NotepadControl>()->setupControlWidgets(_ui->treeWidget, "Notepad");
 	AppControl::getInstance<InternetExplorerControl>()->setupControlWidgets(_ui->treeWidget, "Internet Explorer");
 
 	//Create system window
+	_systemWindow = new SystemWindow(this);
 	_systemWindow->show();
 #if defined(_WIN32)
 	_systemWindow->activateWindow();
@@ -49,10 +51,12 @@ ControlWindow::ControlWindow(QWidget* parent): QMainWindow(parent)
 
 		AppControl::loadAll(json);
 	});
+
+	QObject::connect(_ui->textAACheckBox, &QCheckBox::clicked, _systemWindow, static_cast<void(SystemWindow::*)()>(&SystemWindow::update));
 }
 
 ControlWindow::~ControlWindow()
 {
-	delete _ui;
 	delete _systemWindow;
+	delete _ui;
 }

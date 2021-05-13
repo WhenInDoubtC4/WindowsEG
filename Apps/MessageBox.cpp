@@ -1,8 +1,6 @@
 #include "MessageBox.h"
 #include "ui_MessageBox.h"
 
-#include <QDebug>
-
 MessageBox::MessageBox(messageBoxType type, const QString& title, const QString& text, messageBoxButtonSet buttonSet) : App(WindowTitleBar::buttons::CLOSE_ONLY)
   , _ui(new Ui::MessageBox)
 {
@@ -41,13 +39,14 @@ MessageBox::MessageBox(messageBoxType type, const QString& title, const QString&
 			break;
 		case MessageBox::messageBoxButtonSet::YES_NO_CANCEL:
 			_buttons << new QPushButton("Yes") << new QPushButton("No") << new QPushButton("Cancel");
+			break;
 		case MessageBox::messageBoxButtonSet::CUSTOM:
 			break;
 	}
 
 	//Add buttons to the UI and set style
 	_ui->buttonLayout->addStretch();
-	for (QPushButton* button : _buttons)
+	for (QPushButton* button : qAsConst(_buttons))
 	{
 		static int index = 1;
 		button->setMinimumWidth(BUTTON_MIN_WIDTH);
@@ -61,10 +60,11 @@ MessageBox::MessageBox(messageBoxType type, const QString& title, const QString&
 
 MessageBox::~MessageBox()
 {
+	while(!_buttons.isEmpty()) delete _buttons.takeLast();
 	delete _ui;
 }
 
-QList<QPushButton*>* MessageBox::getButtons()
+QList<QPushButton*>& MessageBox::getButtons()
 {
-	return &_buttons;
+	return _buttons;
 }

@@ -12,7 +12,6 @@ App::App(WindowTitleBar::buttons defaultButtonSet) : SystemSubWindow(defaultButt
 
 App::~App()
 {
-	delete _taskbarElement;
 }
 
 TaskbarElement* App::createTaskbarElement()

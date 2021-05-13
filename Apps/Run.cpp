@@ -1,8 +1,6 @@
 #include "Run.h"
 #include "ui_Run.h"
 
-#include <QDebug>
-
 Run::Run(QString* defaultValue, bool showHistory) : App(WindowTitleBar::buttons::CLOSE_ONLY)
   , _ui(new Ui::Run)
 {

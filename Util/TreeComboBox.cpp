@@ -28,6 +28,13 @@ TreeComboBox::TreeComboBox(QWidget* parent) : QComboBox(parent)
 
 		addChildren(item);
 	}
+
+	QObject::connect(_treeWidget, &QTreeWidget::itemPressed, [=](QTreeWidgetItem* item, int col)
+	{
+		auto pressedIcon = dynamic_cast<ListIcon*>(_treeWidget->itemWidget(item, col));
+		if (!pressedIcon) return;
+		emit openPath(pressedIcon->getCorrespondingPath());
+	});
 }
 
 TreeComboBox::~TreeComboBox()

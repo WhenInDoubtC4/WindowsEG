@@ -31,9 +31,6 @@
      </item>
      <item>
       <widget class="TreeComboBox" name="pathComboBox">
-       <property name="editable">
-        <bool>true</bool>
-       </property>
        <property name="frame">
         <bool>false</bool>
        </property>

@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "SystemWindow.h"
+#include "Control/GlobalControl.h"
 #include "Control/NotepadControl.h"
 #include "Control/InternetExplorerControl.h"
 
@@ -26,4 +27,6 @@ private:
 	Ui::ControlWindow* _ui = nullptr;
 
 	SystemWindow* _systemWindow = nullptr;
+
+	GlobalControl* _globalControl = nullptr;
 };

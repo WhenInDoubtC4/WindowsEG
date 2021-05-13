@@ -23,9 +23,11 @@ class AppControl : public QObject
 	Q_OBJECT
 public:	
 	template<typename T, typename = std::enable_if_t<std::is_base_of_v<AppControl, T>>>
-	static void registerControlClass()
+	static T* registerControlClass()
 	{
-		_instances << new T;
+		T* instance = new T;
+		_instances << instance;
+		return instance;
 	}
 
 	template<typename T, typename = std::enable_if_t<std::is_base_of_v<AppControl, T>>>

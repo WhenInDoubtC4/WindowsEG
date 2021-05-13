@@ -1,8 +1,6 @@
 #include "InternetExplorer.h"
 #include "ui_InternetExplorer.h"
 
-#include <QDebug>
-
 InternetExplorer::InternetExplorer() : App(WindowTitleBar::buttons::NORMAL)
   , _ui(new Ui::InternetExplorer)
   , _uiWidget(new QMainWindow())

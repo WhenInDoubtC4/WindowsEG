@@ -21,6 +21,8 @@ public:
 	void setSelected(bool selected);
 	void setAsComboBoxElement();
 
+	QPixmap getIcon() const;
+
 protected:
 	virtual void mouseDoubleClickEvent(QMouseEvent* event) override;
 	virtual void mousePressEvent(QMouseEvent* event) override;

@@ -60,3 +60,8 @@ void ListIcon::setSelected(bool selected)
 		_ui->titleLabel->setStyleSheet("background: transparent; color: #000000;");
 	}
 }
+
+QPixmap ListIcon::getIcon() const
+{
+	return _ui->iconLabel->pixmap(Qt::ReturnByValueConstant::ReturnByValue);
+}

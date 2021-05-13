@@ -16,6 +16,7 @@ SOURCES += \
     Apps/Notepad.cpp \
     Apps/Run.cpp \
     Control/AppControl.cpp \
+    Control/GlobalControl.cpp \
     Control/InternetExplorerControl.cpp \
     Control/NotepadControl.cpp \
     FileSystem/FakeFileSystem.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     Apps/Notepad.h \
     Apps/Run.h \
     Control/AppControl.h \
+    Control/GlobalControl.h \
     Control/InternetExplorerControl.h \
     Control/NotepadControl.h \
     ControlWindow.h \

@@ -1,7 +1,7 @@
 #include "TaskbarElement.h"
 
-TaskbarElement::TaskbarElement(const QString& text, const QPixmap* icon)
-	: _layout(new QHBoxLayout(this))
+TaskbarElement::TaskbarElement(const QString& text, const QPixmap* icon) : QPushButton()
+	, _layout(new QHBoxLayout(this))
 	, _textLabel(new QLabel())
 {
 	_layout->setMargin(0);
